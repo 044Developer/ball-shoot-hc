@@ -1,5 +1,7 @@
 using BallShoot.Core.Features.ExitDoor.Binder;
 using BallShoot.Core.Features.ExitDoor.View;
+using BallShoot.Core.Features.Player.Binder;
+using BallShoot.Core.Features.Player.View;
 using BallShoot.Core.MonoModels;
 using UnityEngine;
 using Zenject;
@@ -14,7 +16,10 @@ namespace BallShoot.Core.SceneInstallers
         public override void InstallBindings()
         {
             BindModels();
+            
             BindExitDoor();
+            
+            BindPlayer();
         }
 
         private void BindModels()
@@ -37,6 +42,18 @@ namespace BallShoot.Core.SceneInstallers
                 .To<ExitDoorView>()
                 .FromSubContainerResolve()
                 .ByNewPrefabInstaller<ExitDoorInstaller>(_coreSettingsModel.PrefabSettings.ExitDoorPrefab)
+                .UnderTransform(_coreSceneModel.DynamicPrefabParent)
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindPlayer()
+        {
+            Container
+                .Bind<IPlayerView>()
+                .To<PlayerView>()
+                .FromSubContainerResolve()
+                .ByNewPrefabInstaller<PlayerInstaller>(_coreSettingsModel.PrefabSettings.PlayerPrefab)
                 .UnderTransform(_coreSceneModel.DynamicPrefabParent)
                 .AsSingle()
                 .NonLazy();

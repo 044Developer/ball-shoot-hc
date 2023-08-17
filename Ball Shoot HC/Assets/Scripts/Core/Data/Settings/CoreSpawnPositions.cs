@@ -9,6 +9,10 @@ namespace BallShoot.Core.Data.Settings
         [Header("Exit Door")]
         [SerializeField] private Transform _exitDoorSpawnPosition;
 
+        [Header("Player")]
+        [SerializeField] private Transform _playerSpawnPosition;
+        
         public Transform ExitDoorSpawnPosition => _exitDoorSpawnPosition;
+        public Transform PlayerSpawnPosition => _playerSpawnPosition;
     }
 }

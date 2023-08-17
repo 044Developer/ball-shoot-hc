@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: CoreSceneScriptableObjectInstaller
   m_EditorClassIdentifier: 
   _exitDoorConfiguration: {fileID: 11400000, guid: a78c684460ed9c34aadb83e20e02d3d7, type: 2}
+  _playerConfiguration: {fileID: 11400000, guid: 8bae226378c4f8345adbb8f3f555ceaa, type: 2}
