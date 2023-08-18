@@ -1,3 +1,4 @@
+using BallShoot.Core.Data.Runtime;
 using BallShoot.Core.Features.Bullet.Binder;
 using BallShoot.Core.Features.Bullet.View;
 using BallShoot.Core.Features.ExitDoor.Binder;
@@ -5,6 +6,8 @@ using BallShoot.Core.Features.ExitDoor.View;
 using BallShoot.Core.Features.Player.Binder;
 using BallShoot.Core.Features.Player.View;
 using BallShoot.Core.MonoModels;
+using BallShoot.Core.Systems.Update;
+using BallShoot.Core.Systems.UserInput;
 using UnityEngine;
 using Zenject;
 
@@ -17,13 +20,21 @@ namespace BallShoot.Core.SceneInstallers
         
         public override void InstallBindings()
         {
+            BindData();
+            
             BindModels();
-            
-            BindExitDoor();
-            
-            BindPlayer();
 
-            BindBullet();
+            BindSystems();
+            
+            BindFeatures();
+        }
+
+        private void BindData()
+        {
+            Container
+                .Bind<CoreRuntimeData>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindModels()
@@ -37,6 +48,38 @@ namespace BallShoot.Core.SceneInstallers
                 .BindInstance(_coreSettingsModel)
                 .AsSingle()
                 .NonLazy();
+        }
+
+        private void BindSystems()
+        {
+            Container
+                .Bind<MobileInputSystem>()
+                .AsSingle()
+                .NonLazy();
+            
+            Container
+                .Bind<EditorInputSystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<UserInputSystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<CoreUpdateSystem>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindFeatures()
+        {
+            BindExitDoor();
+            
+            BindPlayer();
+
+            BindBullet();
         }
 
         private void BindExitDoor()

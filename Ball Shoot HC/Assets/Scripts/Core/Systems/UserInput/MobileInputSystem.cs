@@ -1,17 +1,18 @@
-using BallShoot.Core.Features.Player.Models;
+using BallShoot.Core.Data.Runtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace BallShoot.Core.Features.Player.Systems.PlayerInput
+namespace BallShoot.Core.Systems.UserInput
 {
     public class MobileInputSystem : IInputSystem
     {
-        private readonly PlayerModel _playerModel;
+        private readonly CoreRuntimeData _coreRuntimeData;
+        
         private bool _isTouchedOverUI = false;
 
-        public MobileInputSystem(PlayerModel playerModel)
+        public MobileInputSystem(CoreRuntimeData coreRuntimeData)
         {
-            _playerModel = playerModel;
+            _coreRuntimeData = coreRuntimeData;
         }
         
         public void Tick()
@@ -62,7 +63,7 @@ namespace BallShoot.Core.Features.Player.Systems.PlayerInput
             if (_isTouchedOverUI)
                 return;
 
-            _playerModel.InputData.InputDuration += Time.deltaTime;
+            _coreRuntimeData.InputLength += Time.deltaTime;
         }
 
         private void InputFinished()

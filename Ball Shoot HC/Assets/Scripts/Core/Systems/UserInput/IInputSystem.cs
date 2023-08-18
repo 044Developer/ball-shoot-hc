@@ -1,4 +1,4 @@
-namespace BallShoot.Core.Features.Player.Systems.PlayerInput
+namespace BallShoot.Core.Systems.UserInput
 {
     public interface IInputSystem
     {

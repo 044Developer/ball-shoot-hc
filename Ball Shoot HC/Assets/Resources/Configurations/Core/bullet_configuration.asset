@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa80032ecbc93e429ce23f510a36924, type: 3}
   m_Name: bullet_configuration
   m_EditorClassIdentifier: 
+  _startSize: {x: 0.1, y: 0.1, z: 0.1}
+  _speed: 5
+  _scaleUpMultiplier: 0.3

@@ -1,3 +1,4 @@
+using BallShoot.Core.Data.Runtime;
 using BallShoot.Core.Features.Player.Models;
 using BallShoot.Core.Features.Player.View;
 using UnityEngine;
@@ -11,11 +12,13 @@ namespace BallShoot.Core.Features.Player.Systems.SizeChange
         
         private readonly IPlayerView _view;
         private readonly PlayerModel _playerModel;
+        private readonly CoreRuntimeData _coreRuntimeData;
 
-        public PlayerSizeChangeSystem(IPlayerView view, PlayerModel playerModel)
+        public PlayerSizeChangeSystem(IPlayerView view, PlayerModel playerModel, CoreRuntimeData coreRuntimeData)
         {
             _view = view;
             _playerModel = playerModel;
+            _coreRuntimeData = coreRuntimeData;
         }
 
         public void ActivateSizeChange()
@@ -39,14 +42,14 @@ namespace BallShoot.Core.Features.Player.Systems.SizeChange
 
         private void CalculateDecreaseValue()
         {
-            var inputDuration = _playerModel.InputData.InputDuration * _playerModel.AnimationData.AnimationSpeed;
-            var currentDecreaseValue = _playerModel.AnimationData.SizeDecreaseCurve.Evaluate(inputDuration);
-            _playerModel.StatsData.CurrentPlayerSize = Vector3.one * currentDecreaseValue;
+            var inputDuration = _coreRuntimeData.InputLength * _playerModel.SettingsData.AnimationSpeed;
+            var currentDecreaseValue = _playerModel.SettingsData.SizeDecreaseCurve.Evaluate(inputDuration);
+            _playerModel.RuntimeData.CurrentPlayerSize = Vector3.one * currentDecreaseValue;
         }
 
         private void SetCurrentSize()
         {
-            _view.PlayerTransform.localScale = _playerModel.StatsData.CurrentPlayerSize;
+            _view.PlayerTransform.localScale = _playerModel.RuntimeData.CurrentPlayerSize;
         }
 
         #endregion
@@ -55,13 +58,13 @@ namespace BallShoot.Core.Features.Player.Systems.SizeChange
 
         private void CalculateColorValue()
         {
-            var colorValue = (1f - _playerModel.AnimationData.SizeDecreaseCurve.keys[FIRST_CURVE_KEY_INDEX].value) * _playerModel.StatsData.CurrentPlayerSize.x + _playerModel.AnimationData.SizeDecreaseCurve.keys[FIRST_CURVE_KEY_INDEX].value;
-            _playerModel.StatsData.CurrentPlayerColor = _playerModel.AnimationData.ColorChangeCurve.Evaluate(colorValue);
+            var colorValue = (1f - _playerModel.SettingsData.SizeDecreaseCurve.keys[FIRST_CURVE_KEY_INDEX].value) * _playerModel.RuntimeData.CurrentPlayerSize.x + _playerModel.SettingsData.SizeDecreaseCurve.keys[FIRST_CURVE_KEY_INDEX].value;
+            _playerModel.RuntimeData.CurrentPlayerColor = _playerModel.SettingsData.ColorChangeCurve.Evaluate(colorValue);
         }
 
         private void SetCurrentColor()
         {
-            _view.PlayerMesh.material.color = _playerModel.StatsData.CurrentPlayerColor;
+            _view.PlayerMesh.material.color = _playerModel.RuntimeData.CurrentPlayerColor;
         }
 
         #endregion

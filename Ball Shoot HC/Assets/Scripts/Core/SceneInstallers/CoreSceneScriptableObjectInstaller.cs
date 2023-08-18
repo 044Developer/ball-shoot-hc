@@ -4,33 +4,36 @@ using BallShoot.Core.Features.Player.Configs;
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "CoreSceneScriptableObjectInstaller", menuName = "Installers/CoreSceneScriptableObjectInstaller")]
-public class CoreSceneScriptableObjectInstaller : ScriptableObjectInstaller<CoreSceneScriptableObjectInstaller>
+namespace BallShoot.Core.SceneInstallers
 {
-    [SerializeField] private ExitDoorConfiguration _exitDoorConfiguration;
-    [SerializeField] private PlayerConfiguration _playerConfiguration;
-    [SerializeField] private BulletConfiguration _bulletConfiguration;
+    [CreateAssetMenu(fileName = "CoreSceneScriptableObjectInstaller", menuName = "Installers/CoreSceneScriptableObjectInstaller")]
+    public class CoreSceneScriptableObjectInstaller : ScriptableObjectInstaller<CoreSceneScriptableObjectInstaller>
+    {
+        [SerializeField] private ExitDoorConfiguration _exitDoorConfiguration;
+        [SerializeField] private PlayerConfiguration _playerConfiguration;
+        [SerializeField] private BulletConfiguration _bulletConfiguration;
     
-    public override void InstallBindings()
-    {
-        BindConfigs();
-    }
+        public override void InstallBindings()
+        {
+            BindConfigs();
+        }
 
-    private void BindConfigs()
-    {
-        Container
-            .BindInstance(_exitDoorConfiguration)
-            .AsSingle()
-            .NonLazy();
+        private void BindConfigs()
+        {
+            Container
+                .BindInstance(_exitDoorConfiguration)
+                .AsSingle()
+                .NonLazy();
         
-        Container
-            .BindInstance(_playerConfiguration)
-            .AsSingle()
-            .NonLazy();
+            Container
+                .BindInstance(_playerConfiguration)
+                .AsSingle()
+                .NonLazy();
         
-        Container
-            .BindInstance(_bulletConfiguration)
-            .AsSingle()
-            .NonLazy();
+            Container
+                .BindInstance(_bulletConfiguration)
+                .AsSingle()
+                .NonLazy();
+        }
     }
 }

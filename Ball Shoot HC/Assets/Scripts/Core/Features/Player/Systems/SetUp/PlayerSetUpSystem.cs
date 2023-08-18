@@ -1,7 +1,9 @@
 using BallShoot.Core.Features.Player.Configs;
+using BallShoot.Core.Features.Player.Data;
 using BallShoot.Core.Features.Player.Models;
 using BallShoot.Core.Features.Player.View;
 using BallShoot.Core.MonoModels;
+using UnityEngine;
 using Zenject;
 
 namespace BallShoot.Core.Features.Player.Systems.SetUp
@@ -28,15 +30,31 @@ namespace BallShoot.Core.Features.Player.Systems.SetUp
         
         public void Initialize()
         {
-            SetUpPlayerStats();
+            SetUpSettings();
+            
+            SetUpRuntimeData();
+            
             PositionPlayer();
         }
 
-        private void SetUpPlayerStats()
+        private void SetUpSettings()
         {
-            _playerModel.AnimationData.AnimationSpeed = _playerConfiguration.AnimationSpeed;
-            _playerModel.AnimationData.SizeDecreaseCurve = _playerConfiguration.PlayerSizeAnimationCurve;
-            _playerModel.AnimationData.ColorChangeCurve = _playerConfiguration.PlayerColorGradientCurve;
+            _playerModel.SettingsData = new PlayerSettingsData
+            (
+                animationSpeed: _playerConfiguration.AnimationSpeed,
+                sizeDecreaseCurve: _playerConfiguration.PlayerSizeAnimationCurve,
+                colorChangeCurve: _playerConfiguration.PlayerColorGradientCurve
+            );
+        }
+
+        private void SetUpRuntimeData()
+        {
+            _playerModel.RuntimeData = new PlayerRuntimeData
+            (
+                PlayerStatus.InActive,
+                currentPlayerSize: Vector3.one,
+                Color.yellow
+            );
         }
 
         private void PositionPlayer()

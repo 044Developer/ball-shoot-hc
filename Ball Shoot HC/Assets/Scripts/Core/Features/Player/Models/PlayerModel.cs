@@ -4,8 +4,7 @@ namespace BallShoot.Core.Features.Player.Models
 {
     public class PlayerModel
     {
-        public PlayerStatsData StatsData { get; } = new();
-        public PlayerAnimationData AnimationData { get; } = new();
-        public PlayerInputData InputData { get; } = new();
+        public PlayerRuntimeData RuntimeData = new PlayerRuntimeData();
+        public PlayerSettingsData SettingsData = new PlayerSettingsData();
     }
 }
