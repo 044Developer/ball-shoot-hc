@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTransform: {fileID: 2338068219996680883}
+  _playerMesh: {fileID: 1081453181141464476}
 --- !u!114 &3256718604959187695
 MonoBehaviour:
   m_ObjectHideFlags: 0

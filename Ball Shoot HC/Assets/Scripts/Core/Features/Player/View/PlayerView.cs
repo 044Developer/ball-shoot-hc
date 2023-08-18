@@ -6,7 +6,9 @@ namespace BallShoot.Core.Features.Player.View
     {
         [Header("Common")]
         [SerializeField] private Transform _playerTransform;
+        [SerializeField] private MeshRenderer _playerMesh;
 
         public Transform PlayerTransform => _playerTransform;
+        public MeshRenderer PlayerMesh => _playerMesh;
     }
 }

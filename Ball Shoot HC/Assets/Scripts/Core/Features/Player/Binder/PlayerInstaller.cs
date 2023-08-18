@@ -1,3 +1,5 @@
+using BallShoot.Core.Features.Player.Models;
+using BallShoot.Core.Features.Player.Systems.PlayerInput;
 using BallShoot.Core.Features.Player.Systems.PlayerUpdate;
 using BallShoot.Core.Features.Player.Systems.SetUp;
 using BallShoot.Core.Features.Player.Systems.SizeChange;
@@ -16,11 +18,29 @@ namespace BallShoot.Core.Features.Player.Binder
 
         private void BindModels()
         {
-            
+            Container
+                .Bind<PlayerModel>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindSystems()
         {
+            Container
+                .Bind<MobileInputSystem>()
+                .AsSingle()
+                .NonLazy();
+            
+            Container
+                .Bind<EditorInputSystem>()
+                .AsSingle()
+                .NonLazy();
+            
+            Container
+                .BindInterfacesAndSelfTo<PlayerInputSystem>()
+                .AsSingle()
+                .NonLazy();
+            
             Container
                 .BindInterfacesAndSelfTo<PlayerSetUpSystem>()
                 .AsSingle()
