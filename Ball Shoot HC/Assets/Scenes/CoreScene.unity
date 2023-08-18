@@ -677,6 +677,7 @@ MonoBehaviour:
   _prefabSettings:
     _exitDoorPrefab: {fileID: 2732878489233906821, guid: ebfb5040974197c45becb1ed18eba5d1, type: 3}
     _playerPrefab: {fileID: 5380848300114483222, guid: 97fa4f74ea44844428d0d13c5dffb03a, type: 3}
+    _bulletPrefab: {fileID: 2842272202525103692, guid: 7f282a74699046348ae099557c77fc17, type: 3}
   _spawnPositions:
     _exitDoorSpawnPosition: {fileID: 2026857352}
     _playerSpawnPosition: {fileID: 929261267}

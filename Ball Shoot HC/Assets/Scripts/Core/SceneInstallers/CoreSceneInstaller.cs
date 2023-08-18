@@ -1,3 +1,5 @@
+using BallShoot.Core.Features.Bullet.Binder;
+using BallShoot.Core.Features.Bullet.View;
 using BallShoot.Core.Features.ExitDoor.Binder;
 using BallShoot.Core.Features.ExitDoor.View;
 using BallShoot.Core.Features.Player.Binder;
@@ -20,6 +22,8 @@ namespace BallShoot.Core.SceneInstallers
             BindExitDoor();
             
             BindPlayer();
+
+            BindBullet();
         }
 
         private void BindModels()
@@ -57,6 +61,23 @@ namespace BallShoot.Core.SceneInstallers
                 .UnderTransform(_coreSceneModel.DynamicPrefabParent)
                 .AsSingle()
                 .NonLazy();
+        }
+
+        private void BindBullet()
+        {
+            Container
+                .BindFactory<BulletView, BulletView.Factory>()
+                .FromPoolableMemoryPool<BulletView, BulletViewPool>(binder 
+                    => binder
+                        .WithInitialSize(5)
+                        .FromSubContainerResolve()
+                        .ByNewPrefabInstaller<BulletInstaller>(_coreSettingsModel.PrefabSettings.BulletPrefab)
+                        .UnderTransform(_coreSceneModel.DynamicPrefabParent)
+                    );
+        }
+        
+        class BulletViewPool : MonoPoolableMemoryPool<IMemoryPool, BulletView>
+        {
         }
     }
 }

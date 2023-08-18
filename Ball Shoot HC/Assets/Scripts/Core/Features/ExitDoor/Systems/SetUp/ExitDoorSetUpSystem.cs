@@ -1,5 +1,4 @@
 using BallShoot.Core.Features.ExitDoor.Configs;
-using BallShoot.Core.Features.ExitDoor.Data;
 using BallShoot.Core.Features.ExitDoor.Model;
 using BallShoot.Core.Features.ExitDoor.View;
 using BallShoot.Core.MonoModels;
