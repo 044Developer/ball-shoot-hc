@@ -1,4 +1,6 @@
+using BallShoot.Core.Features.Player.Systems.PlayerUpdate;
 using BallShoot.Core.Features.Player.Systems.SetUp;
+using BallShoot.Core.Features.Player.Systems.SizeChange;
 using Zenject;
 
 namespace BallShoot.Core.Features.Player.Binder
@@ -21,6 +23,17 @@ namespace BallShoot.Core.Features.Player.Binder
         {
             Container
                 .BindInterfacesAndSelfTo<PlayerSetUpSystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<IPlayerSizeChangeSystem>()
+                .To<PlayerSizeChangeSystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<PlayerUpdateSystem>()
                 .AsSingle()
                 .NonLazy();
         }
