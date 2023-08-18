@@ -35,7 +35,6 @@ namespace BallShoot.Core.Features.ExitDoor.Systems.SetUp
 
         private void SetUpAnimationModel()
         {
-            _model.AnimationData = new ExitDoorAnimationData();
             _model.AnimationData.DoorOpenSpeed = _exitDoorConfiguration.DoorOpenSpeed;
             _model.AnimationData.DoorOpenEase = _exitDoorConfiguration.DoorOpenEase;
             _model.AnimationData.DoorCloseSpeed = _exitDoorConfiguration.DoorCloseSpeed;

@@ -4,6 +4,6 @@ namespace BallShoot.Core.Features.ExitDoor.Model
 {
     public class ExitDoorModel
     {
-        public ExitDoorAnimationData AnimationData { get; set; } = new ExitDoorAnimationData();
+        public ExitDoorAnimationData AnimationData { get; } = new ExitDoorAnimationData();
     }
 }
