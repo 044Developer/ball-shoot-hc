@@ -1,9 +1,9 @@
 using BallShoot.Core.Features.Bullet.Configs;
 using BallShoot.Core.Features.BulletVFX.Configuration;
 using BallShoot.Core.Features.ExitDoor.Configs;
+using BallShoot.Core.Features.Obstacles.Configuration;
 using BallShoot.Core.Features.Player.Configs;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace BallShoot.Core.SceneInstallers
@@ -14,7 +14,8 @@ namespace BallShoot.Core.SceneInstallers
         [SerializeField] private ExitDoorConfiguration _exitDoorConfiguration;
         [SerializeField] private PlayerConfiguration _playerConfiguration;
         [SerializeField] private BulletConfiguration _bulletConfiguration;
-        [FormerlySerializedAs("_bulletVFXConfiguration")] [SerializeField] private DestroyVFXConfiguration vfxConfiguration;
+        [SerializeField] private DestroyVFXConfiguration _vfxConfiguration;
+        [SerializeField] private ObstacleConfiguration _obstacleConfiguration;
     
         public override void InstallBindings()
         {
@@ -39,7 +40,12 @@ namespace BallShoot.Core.SceneInstallers
                 .NonLazy();
         
             Container
-                .BindInstance(vfxConfiguration)
+                .BindInstance(_vfxConfiguration)
+                .AsSingle()
+                .NonLazy();
+        
+            Container
+                .BindInstance(_obstacleConfiguration)
                 .AsSingle()
                 .NonLazy();
         }

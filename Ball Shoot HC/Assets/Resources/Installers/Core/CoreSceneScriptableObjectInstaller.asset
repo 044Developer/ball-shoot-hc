@@ -15,4 +15,5 @@ MonoBehaviour:
   _exitDoorConfiguration: {fileID: 11400000, guid: a78c684460ed9c34aadb83e20e02d3d7, type: 2}
   _playerConfiguration: {fileID: 11400000, guid: 8bae226378c4f8345adbb8f3f555ceaa, type: 2}
   _bulletConfiguration: {fileID: 11400000, guid: bda99247c9676bf4caa925836c1caeaa, type: 2}
-  _bulletVFXConfiguration: {fileID: 11400000, guid: 231448820b7828a47aaaa709a763f16a, type: 2}
+  _vfxConfiguration: {fileID: 11400000, guid: 231448820b7828a47aaaa709a763f16a, type: 2}
+  _obstacleConfiguration: {fileID: 11400000, guid: 2cbab4f16b07a42439f676e6d6d74fd5, type: 2}

@@ -6,9 +6,12 @@ using BallShoot.Core.Features.BulletVFX.Binder;
 using BallShoot.Core.Features.BulletVFX.Facade;
 using BallShoot.Core.Features.ExitDoor.Binder;
 using BallShoot.Core.Features.ExitDoor.View;
+using BallShoot.Core.Features.Obstacles.Binder;
+using BallShoot.Core.Features.Obstacles.Facade;
 using BallShoot.Core.Features.Player.Binder;
 using BallShoot.Core.Features.Player.View;
 using BallShoot.Core.MonoModels;
+using BallShoot.Core.Systems.ObstaclesSpawn;
 using BallShoot.Core.Systems.Update;
 using BallShoot.Core.Systems.UserInput;
 using UnityEngine;
@@ -85,6 +88,8 @@ namespace BallShoot.Core.SceneInstallers
             BindDestroyVFX();
             
             BindPlayer();
+
+            BindObstacles();
         }
 
         private void BindExitDoor()
@@ -121,7 +126,7 @@ namespace BallShoot.Core.SceneInstallers
                         .FromSubContainerResolve()
                         .ByNewPrefabInstaller<BulletInstaller>(_coreSettingsModel.PrefabSettings.BulletPrefab)
                         .UnderTransform(_coreSceneModel.DynamicBulletsPrefabParent)
-                        .AsCached());
+                        .AsTransient());
         }
 
         private void BindDestroyVFX()
@@ -134,14 +139,41 @@ namespace BallShoot.Core.SceneInstallers
                         .FromSubContainerResolve()
                         .ByNewPrefabInstaller<DestroyVFXInstaller>(_coreSettingsModel.PrefabSettings.DestroyVFXPrefab)
                         .UnderTransform(_coreSceneModel.DynamicVFXPrefabParent)
-                        .AsCached());
+                        .AsTransient());
         }
-        
+
+        private void BindObstacles()
+        {
+            Container
+                .BindInterfacesAndSelfTo<ObstaclesSpawnSystem>()
+                .AsSingle()
+                .NonLazy();
+            
+            Container
+                .BindFactory<Vector3, ObstacleFacade, ObstacleFacade.Factory>()
+                .FromPoolableMemoryPool<Vector3, ObstacleFacade, ObstacleFacadePool>(binder 
+                    => binder
+                        .WithInitialSize(30)
+                        .FromSubContainerResolve()
+                        .ByNewPrefabInstaller<ObstacleInstaller>(ChooseFooPrefab)
+                        .UnderTransform(_coreSceneModel.DynamicObstaclesPrefabParent)
+                        .AsTransient());
+        }
+
+        Object ChooseFooPrefab(InjectContext context)
+        {
+            return _coreSettingsModel.PrefabSettings.ObstacleList[Random.Range(0, _coreSettingsModel.PrefabSettings.ObstacleList.Count)];
+        }
+
         class BulletFacadePool : MonoPoolableMemoryPool<IMemoryPool, BulletFacade>
         {
         }
         
         class DestroyVFXFacadePool : MonoPoolableMemoryPool<Vector3, float, IMemoryPool, DestroyVFXFacade>
+        {
+        }
+        
+        class ObstacleFacadePool : MonoPoolableMemoryPool<Vector3, IMemoryPool, ObstacleFacade>
         {
         }
     }
