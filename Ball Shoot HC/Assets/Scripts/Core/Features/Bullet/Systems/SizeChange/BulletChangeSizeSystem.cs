@@ -1,14 +1,15 @@
+using System;
 using BallShoot.Core.Data.Runtime;
 using UnityEngine;
+using Zenject;
 
 namespace BallShoot.Core.Features.Bullet.Systems.SizeChange
 {
     public interface IBulletChangeSizeSystem
     {
-        void Tick();
     }
     
-    public class BulletChangeSizeSystem : IBulletChangeSizeSystem
+    public class BulletChangeSizeSystem : IInitializable, IDisposable
     {
         private readonly CoreRuntimeData _coreRuntimeData;
 
@@ -16,13 +17,34 @@ namespace BallShoot.Core.Features.Bullet.Systems.SizeChange
         {
             _coreRuntimeData = coreRuntimeData;
         }
-        
-        public void Tick()
+
+        public void Initialize()
         {
-            if (_coreRuntimeData.InputLength > 0)
-            {
-                Debug.Log($"Pressure = {_coreRuntimeData.InputLength}");
-            }
+            _coreRuntimeData.OnTapStartedEvent += ActivateSizeChange;
+            _coreRuntimeData.OnTapEvent += UpdateSize;
+            _coreRuntimeData.OnTapFinishedEvent += DeactivateSizeChange;
+        }
+
+        public void Dispose()
+        {
+            _coreRuntimeData.OnTapStartedEvent -= ActivateSizeChange;
+            _coreRuntimeData.OnTapEvent -= UpdateSize;
+            _coreRuntimeData.OnTapFinishedEvent -= DeactivateSizeChange;
+        }
+
+        private void ActivateSizeChange()
+        {
+            Debug.Log("STARTED BULLET");
+        }
+
+        private void UpdateSize()
+        {
+            Debug.Log("PRESS BULLET");
+        }
+
+        private void DeactivateSizeChange()
+        {
+            Debug.Log("DEATIVATE BULLET");
         }
     }
 }

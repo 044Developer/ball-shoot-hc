@@ -34,8 +34,7 @@ namespace BallShoot.Core.Features.Bullet.Binder
                 .NonLazy();
 
             Container
-                .Bind<IBulletChangeSizeSystem>()
-                .To<BulletChangeSizeSystem>()
+                .BindInterfacesAndSelfTo<BulletChangeSizeSystem>()
                 .AsSingle()
                 .NonLazy();
 

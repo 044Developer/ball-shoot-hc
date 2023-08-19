@@ -1,5 +1,6 @@
 using BallShoot.Core.Data.Runtime;
 using BallShoot.Core.Features.Bullet.Binder;
+using BallShoot.Core.Features.Bullet.Facade;
 using BallShoot.Core.Features.Bullet.View;
 using BallShoot.Core.Features.ExitDoor.Binder;
 using BallShoot.Core.Features.ExitDoor.View;
@@ -76,10 +77,10 @@ namespace BallShoot.Core.SceneInstallers
         private void BindFeatures()
         {
             BindExitDoor();
-            
-            BindPlayer();
 
             BindBullet();
+            
+            BindPlayer();
         }
 
         private void BindExitDoor()
@@ -109,8 +110,8 @@ namespace BallShoot.Core.SceneInstallers
         private void BindBullet()
         {
             Container
-                .BindFactory<BulletView, BulletView.Factory>()
-                .FromPoolableMemoryPool<BulletView, BulletViewPool>(binder 
+                .BindFactory<BulletFacade, BulletFacade.Factory>()
+                .FromPoolableMemoryPool<BulletFacade, BulletFacadePool>(binder 
                     => binder
                         .WithInitialSize(5)
                         .FromSubContainerResolve()
@@ -119,7 +120,7 @@ namespace BallShoot.Core.SceneInstallers
                     );
         }
         
-        class BulletViewPool : MonoPoolableMemoryPool<IMemoryPool, BulletView>
+        class BulletFacadePool : MonoPoolableMemoryPool<IMemoryPool, BulletFacade>
         {
         }
     }

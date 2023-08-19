@@ -54,6 +54,11 @@ namespace BallShoot.Core.Systems.UserInput
             {
                 _isTouchedOverUI = currentEventSystem.IsPointerOverGameObject();
             }
+            
+            if (_isTouchedOverUI)
+                return;
+            
+            _coreRuntimeData.OnTapStartedEvent?.Invoke();
         }
 
         private void ContinueInput()
@@ -61,12 +66,14 @@ namespace BallShoot.Core.Systems.UserInput
             if (_isTouchedOverUI)
                 return;
 
-            _coreRuntimeData.InputLength += Time.deltaTime;
+            _coreRuntimeData.OnTapEvent?.Invoke();
         }
 
         private void InputFinished()
         {
             _isTouchedOverUI = false;
+            
+            _coreRuntimeData.OnTapFinishedEvent?.Invoke();
         }
     }
 }

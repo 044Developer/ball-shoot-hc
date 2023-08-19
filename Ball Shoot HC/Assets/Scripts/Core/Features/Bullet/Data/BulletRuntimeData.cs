@@ -1,14 +1,12 @@
+using System.Collections.Generic;
+using BallShoot.Core.Features.Bullet.Facade;
+
 namespace BallShoot.Core.Features.Bullet.Data
 {
-    public struct BulletRuntimeData
+    public class BulletRuntimeData
     {
-        public BulletStatus Status;
-        public float CurrentScaleForceApplied;
-
-        public BulletRuntimeData(BulletStatus status, float currentScaleForceApplied)
-        {
-            Status = status;
-            CurrentScaleForceApplied = currentScaleForceApplied;
-        }
+        public BulletStatus Status = BulletStatus.InActive;
+        public float CurrentScaleForceApplied = 0f;
+        public readonly List<BulletFacade> ActiveBullets = new List<BulletFacade>();
     }
 }

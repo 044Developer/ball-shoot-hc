@@ -1,26 +1,34 @@
 using BallShoot.Core.Features.Bullet.Configs;
 using BallShoot.Core.Features.Bullet.Data;
 using BallShoot.Core.Features.Bullet.Model;
+using BallShoot.Core.Features.Bullet.View;
+using BallShoot.Core.MonoModels;
 using Zenject;
 
 namespace BallShoot.Core.Features.Bullet.Systems.SetUp
 {
-    public class BulletSetUpSystem : IInitializable
+    public class BulletSetUpSystem : IInitializable, IBulletSetUpSystem
     {
         private readonly BulletConfiguration _configuration;
         private readonly BulletModel _model;
+        private readonly BulletView _view;
+        private readonly CoreSettingsModel _coreSettingsModel;
 
-        public BulletSetUpSystem(BulletConfiguration configuration, BulletModel model)
+        public BulletSetUpSystem(
+            BulletConfiguration configuration,
+            BulletModel model,
+            BulletView view,
+            CoreSettingsModel coreSettingsModel)
         {
             _configuration = configuration;
             _model = model;
+            _view = view;
+            _coreSettingsModel = coreSettingsModel;
         }
         
         public void Initialize()
         {
             SetUpSettings();
-
-            SetUpRuntime();
         }
 
         private void SetUpSettings()
@@ -33,13 +41,9 @@ namespace BallShoot.Core.Features.Bullet.Systems.SetUp
             );
         }
 
-        private void SetUpRuntime()
+        public void ResetBullet()
         {
-            _model.RuntimeData = new BulletRuntimeData
-            (
-                status: BulletStatus.InActive,
-                currentScaleForceApplied: 0f
-            );
+            _view.BulletTransform.position = _coreSettingsModel.SpawnPositions.BulletSpawnPosition.position;
         }
     }
 }

@@ -31,8 +31,7 @@ namespace BallShoot.Core.Features.Player.Binder
                 .NonLazy();
 
             Container
-                .Bind<IPlayerSizeChangeSystem>()
-                .To<PlayerSizeChangeSystem>()
+                .BindInterfacesAndSelfTo<PlayerSizeChangeSystem>()
                 .AsSingle()
                 .NonLazy();
 
