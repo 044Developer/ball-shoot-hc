@@ -1,3 +1,4 @@
+using BallShoot.Core.Features.Bullet.Data;
 using BallShoot.Core.Features.Bullet.Model;
 using BallShoot.Core.Features.Bullet.Systems.SetUp;
 using UnityEngine;
@@ -21,15 +22,19 @@ namespace BallShoot.Core.Features.Bullet.Facade
         public void OnSpawned(IMemoryPool pool)
         {
             _pool = pool;
-            _bulletModel.RuntimeData.ActiveBullets.Add(this);
+            _bulletModel.RuntimeData.Status = BulletStatus.Recharge;
             _setUpSystem.ResetBullet();
         }
         
         public void OnDespawned()
         {
-            _bulletModel.RuntimeData.ActiveBullets.Remove(this);
-            _pool.Despawn(this);
+            _bulletModel.RuntimeData.Status = BulletStatus.InActive;
             _pool = null;
+        }
+
+        public void Die()
+        {
+            _pool.Despawn(this); 
         }
         
         public class Factory : PlaceholderFactory<BulletFacade>

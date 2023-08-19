@@ -114,10 +114,12 @@ namespace BallShoot.Core.SceneInstallers
                 .FromPoolableMemoryPool<BulletFacade, BulletFacadePool>(binder 
                     => binder
                         .WithInitialSize(5)
+                        .ExpandByDoubling()
                         .FromSubContainerResolve()
                         .ByNewPrefabInstaller<BulletInstaller>(_coreSettingsModel.PrefabSettings.BulletPrefab)
                         .UnderTransform(_coreSceneModel.DynamicPrefabParent)
-                    );
+                    )
+                ;
         }
         
         class BulletFacadePool : MonoPoolableMemoryPool<IMemoryPool, BulletFacade>

@@ -45,7 +45,6 @@ namespace BallShoot.Core.Features.Player.Systems.SizeChange
         private void ActivateSizeChange()
         {
             _currentInputDuration = 0;
-            Debug.Log("STARTED PLAYER");
             _bulletPool.Create();
         }
 
@@ -58,12 +57,10 @@ namespace BallShoot.Core.Features.Player.Systems.SizeChange
             
             CalculateColorValue();
             SetCurrentColor();
-            Debug.Log("PRESS PLAYER");
         }
 
         private void DeactivateSizeChange()
         {
-            Debug.Log("DEACTIVATE PLAYER");
         }
 
         #region Size

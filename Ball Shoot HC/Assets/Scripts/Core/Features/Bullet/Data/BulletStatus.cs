@@ -2,9 +2,9 @@ namespace BallShoot.Core.Features.Bullet.Data
 {
     public enum BulletStatus
     {
-        InActive,
-        Recharge,
-        Fly,
-        Explode
+        InActive = 0,
+        Recharge = 1,
+        Fly = 2,
+        Explode = 3
     }
 }

@@ -1,21 +1,28 @@
 using System;
 using BallShoot.Core.Data.Runtime;
+using BallShoot.Core.Features.Bullet.Data;
+using BallShoot.Core.Features.Bullet.Facade;
+using BallShoot.Core.Features.Bullet.Model;
+using BallShoot.Core.Features.Bullet.View;
 using UnityEngine;
 using Zenject;
 
 namespace BallShoot.Core.Features.Bullet.Systems.SizeChange
 {
-    public interface IBulletChangeSizeSystem
-    {
-    }
-    
     public class BulletChangeSizeSystem : IInitializable, IDisposable
     {
         private readonly CoreRuntimeData _coreRuntimeData;
+        private readonly BulletModel _model;
+        private readonly BulletView _view;
 
-        public BulletChangeSizeSystem(CoreRuntimeData coreRuntimeData)
+        public BulletChangeSizeSystem(
+            CoreRuntimeData coreRuntimeData,
+            BulletModel model,
+            BulletView view)
         {
             _coreRuntimeData = coreRuntimeData;
+            _model = model;
+            _view = view;
         }
 
         public void Initialize()
@@ -34,17 +41,20 @@ namespace BallShoot.Core.Features.Bullet.Systems.SizeChange
 
         private void ActivateSizeChange()
         {
-            Debug.Log("STARTED BULLET");
+            _model.RuntimeData.Status = BulletStatus.Recharge;
         }
 
         private void UpdateSize()
         {
-            Debug.Log("PRESS BULLET");
+            if (_model.RuntimeData.Status != BulletStatus.Recharge)
+                return;
+            
+            _view.Transform.localScale += Vector3.one * _model.SettingsData.SizeMultiplier * Time.deltaTime;
         }
 
         private void DeactivateSizeChange()
         {
-            Debug.Log("DEATIVATE BULLET");
+            _model.RuntimeData.Status = BulletStatus.Fly;
         }
     }
 }

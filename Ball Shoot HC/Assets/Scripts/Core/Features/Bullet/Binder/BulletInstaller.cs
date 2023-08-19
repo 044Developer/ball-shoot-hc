@@ -1,7 +1,8 @@
 using BallShoot.Core.Features.Bullet.Model;
 using BallShoot.Core.Features.Bullet.Systems.DealDamage;
+using BallShoot.Core.Features.Bullet.Systems.Destroy;
 using BallShoot.Core.Features.Bullet.Systems.Fly;
-using BallShoot.Core.Features.Bullet.Systems.Launch;
+using BallShoot.Core.Features.Bullet.Systems.LifeTime;
 using BallShoot.Core.Features.Bullet.Systems.SetUp;
 using BallShoot.Core.Features.Bullet.Systems.SizeChange;
 using BallShoot.Core.Features.Bullet.Systems.Update;
@@ -39,14 +40,20 @@ namespace BallShoot.Core.Features.Bullet.Binder
                 .NonLazy();
 
             Container
-                .Bind<IBulletLaunchSystem>()
-                .To<BulletLaunchSystem>()
+                .Bind<IBulletFlySystem>()
+                .To<BulletFlySystem>()
                 .AsSingle()
                 .NonLazy();
 
             Container
-                .Bind<IBulletFlySystem>()
-                .To<BulletFlySystem>()
+                .Bind<IBulletDestroySystem>()
+                .To<BulletDestroySystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<IBulletLifeTimeSystem>()
+                .To<BulletLifeTimeSystem>()
                 .AsSingle()
                 .NonLazy();
 

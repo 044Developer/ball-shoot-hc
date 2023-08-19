@@ -3,6 +3,7 @@ using BallShoot.Core.Features.Bullet.Data;
 using BallShoot.Core.Features.Bullet.Model;
 using BallShoot.Core.Features.Bullet.View;
 using BallShoot.Core.MonoModels;
+using UnityEngine;
 using Zenject;
 
 namespace BallShoot.Core.Features.Bullet.Systems.SetUp
@@ -37,13 +38,17 @@ namespace BallShoot.Core.Features.Bullet.Systems.SetUp
             (
                 startSize: _configuration.StartSize,
                 speed: _configuration.Speed,
-                sizeMultiplier: _configuration.ScaleUpMultiplier
+                sizeMultiplier: _configuration.ScaleUpMultiplier,
+                startDamageRadius: _configuration.StartDamageRadius,
+                lifeTime: _configuration.LifeTime
             );
         }
 
         public void ResetBullet()
         {
-            _view.BulletTransform.position = _coreSettingsModel.SpawnPositions.BulletSpawnPosition.position;
+            _view.Transform.position = _coreSettingsModel.SpawnPositions.BulletSpawnPosition.position;
+            _view.Rigidbody.velocity = Vector3.zero;
+            _view.Transform.localScale = _model.SettingsData.StartSize;
         }
     }
 }

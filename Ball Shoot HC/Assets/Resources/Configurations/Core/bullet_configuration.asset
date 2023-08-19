@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: bullet_configuration
   m_EditorClassIdentifier: 
   _startSize: {x: 0.1, y: 0.1, z: 0.1}
-  _speed: 5
+  _startDamageRadius: {x: 0, y: 0, z: 0}
+  _speed: 120
+  _lifeTime: 6
   _scaleUpMultiplier: 0.3
