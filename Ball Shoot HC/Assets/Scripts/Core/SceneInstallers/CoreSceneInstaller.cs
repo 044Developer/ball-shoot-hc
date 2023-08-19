@@ -2,6 +2,8 @@ using BallShoot.Core.Data.Runtime;
 using BallShoot.Core.Features.Bullet.Binder;
 using BallShoot.Core.Features.Bullet.Facade;
 using BallShoot.Core.Features.Bullet.View;
+using BallShoot.Core.Features.BulletVFX.Binder;
+using BallShoot.Core.Features.BulletVFX.Facade;
 using BallShoot.Core.Features.ExitDoor.Binder;
 using BallShoot.Core.Features.ExitDoor.View;
 using BallShoot.Core.Features.Player.Binder;
@@ -79,6 +81,8 @@ namespace BallShoot.Core.SceneInstallers
             BindExitDoor();
 
             BindBullet();
+
+            BindDestroyVFX();
             
             BindPlayer();
         }
@@ -116,11 +120,28 @@ namespace BallShoot.Core.SceneInstallers
                         .WithInitialSize(5)
                         .FromSubContainerResolve()
                         .ByNewPrefabInstaller<BulletInstaller>(_coreSettingsModel.PrefabSettings.BulletPrefab)
-                        .UnderTransform(_coreSceneModel.DynamicPrefabParent)
+                        .UnderTransform(_coreSceneModel.DynamicBulletsPrefabParent)
+                        .AsCached());
+        }
+
+        private void BindDestroyVFX()
+        {
+            Container
+                .BindFactory<Vector3, float, DestroyVFXFacade, DestroyVFXFacade.Factory>()
+                .FromPoolableMemoryPool<Vector3, float, DestroyVFXFacade, DestroyVFXFacadePool>(binder 
+                    => binder
+                        .WithInitialSize(5)
+                        .FromSubContainerResolve()
+                        .ByNewPrefabInstaller<DestroyVFXInstaller>(_coreSettingsModel.PrefabSettings.DestroyVFXPrefab)
+                        .UnderTransform(_coreSceneModel.DynamicVFXPrefabParent)
                         .AsCached());
         }
         
         class BulletFacadePool : MonoPoolableMemoryPool<IMemoryPool, BulletFacade>
+        {
+        }
+        
+        class DestroyVFXFacadePool : MonoPoolableMemoryPool<Vector3, float, IMemoryPool, DestroyVFXFacade>
         {
         }
     }
