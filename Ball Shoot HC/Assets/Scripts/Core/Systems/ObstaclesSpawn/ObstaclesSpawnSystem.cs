@@ -8,6 +8,11 @@ namespace BallShoot.Core.Systems.ObstaclesSpawn
 {
     public class ObstaclesSpawnSystem : IInitializable, IObstaclesSpawnSystem
     {
+        private const int FIRST_POS_INDEX = 0;
+        private const int SECOND_POS_INDEX = 1;
+        private const int THIRD_POS_INDEX = 2;
+        private const int FORTH_POS_INDEX = 3;
+        
         private readonly ObstacleConfiguration _configuration;
         private readonly ObstacleFacade.Factory _pool;
         private readonly CoreSettingsModel _coreSettingsModel;
@@ -49,28 +54,28 @@ namespace BallShoot.Core.Systems.ObstaclesSpawn
         {
             float x = Random.Range(
                 Mathf.Min(
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[0].position.x,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[1].position.x,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[2].position.x,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[3].position.x),
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[FIRST_POS_INDEX].position.x,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[SECOND_POS_INDEX].position.x,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[THIRD_POS_INDEX].position.x,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[FORTH_POS_INDEX].position.x),
                 Mathf.Max(
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[0].position.x,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[1].position.x,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[2].position.x,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[3].position.x));
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[FIRST_POS_INDEX].position.x,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[SECOND_POS_INDEX].position.x,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[THIRD_POS_INDEX].position.x,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[FORTH_POS_INDEX].position.x));
             
-            float y = 0;
+            float y = _configuration.ObstacleHeight;
             
             float z = Random.Range(Mathf.Min(
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[0].position.z,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[1].position.z,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[2].position.z,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[3].position.z),
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[FIRST_POS_INDEX].position.z,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[SECOND_POS_INDEX].position.z,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[THIRD_POS_INDEX].position.z,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[FORTH_POS_INDEX].position.z),
                 Mathf.Max(
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[0].position.z,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[1].position.z,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[2].position.z,
-                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[3].position.z));
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[FIRST_POS_INDEX].position.z,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[SECOND_POS_INDEX].position.z,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[THIRD_POS_INDEX].position.z,
+                    _coreSettingsModel.SpawnPositions.ObstacleAreaPositions[FORTH_POS_INDEX].position.z));
 
             return new Vector3(x, y, z);
         }

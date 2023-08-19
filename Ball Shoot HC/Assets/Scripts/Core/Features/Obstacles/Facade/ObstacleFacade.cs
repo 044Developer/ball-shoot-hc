@@ -1,3 +1,5 @@
+using BallShoot.Core.Features.Obstacles.Data;
+using BallShoot.Core.Features.Obstacles.Model;
 using BallShoot.Core.Features.Obstacles.Systems.SetUp;
 using BallShoot.Core.Features.Obstacles.View;
 using UnityEngine;
@@ -10,12 +12,17 @@ namespace BallShoot.Core.Features.Obstacles.Facade
         private IMemoryPool _pool;
         private IObstacleSetUpSystem _setUpSystem;
         private ObstacleView _view;
-
+        private ObstacleModel _model;
+        
         [Inject]
-        public void Construct(IObstacleSetUpSystem setUpSystem, ObstacleView view)
+        public void Construct(
+            IObstacleSetUpSystem setUpSystem,
+            ObstacleView view,
+            ObstacleModel model)
         {
             _setUpSystem = setUpSystem;
             _view = view;
+            _model = model;
         }
         
         public void OnSpawned(Vector3 position, IMemoryPool pool)
@@ -28,6 +35,11 @@ namespace BallShoot.Core.Features.Obstacles.Facade
         {
             _setUpSystem.Reset();
             _pool = null;
+        }
+
+        public void TakeDamage()
+        {
+            _model.RuntimeData.State = ObstacleState.Destruction;
         }
 
         public void Die()

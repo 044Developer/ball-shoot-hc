@@ -52,8 +52,7 @@ namespace BallShoot.Core.Features.Bullet.Binder
                 .AsSingle();
 
             Container
-                .Bind<IBulletDealDamageSystem>()
-                .To<BulletDealDamageSystem>()
+                .BindInterfacesAndSelfTo<BulletDealDamageSystem>()
                 .AsSingle();
             
             Container
