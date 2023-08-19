@@ -1,6 +1,5 @@
 using BallShoot.Core.Features.Bullet.Configs;
 using BallShoot.Core.Features.Bullet.Data;
-using BallShoot.Core.Features.Bullet.Facade;
 using BallShoot.Core.Features.Bullet.Model;
 using BallShoot.Core.Features.Bullet.View;
 using BallShoot.Core.MonoModels;
@@ -12,18 +11,18 @@ namespace BallShoot.Core.Features.Bullet.Systems.SetUp
     public class BulletSetUpSystem : IInitializable, IBulletSetUpSystem
     {
         private readonly BulletConfiguration _configuration;
-        private readonly BulletFacade _facade;
+        private readonly BulletModel _model;
         private readonly BulletView _view;
         private readonly CoreSettingsModel _coreSettingsModel;
 
         public BulletSetUpSystem(
             BulletConfiguration configuration,
-            BulletFacade facade,
+            BulletModel model,
             BulletView view,
             CoreSettingsModel coreSettingsModel)
         {
             _configuration = configuration;
-            _facade = facade;
+            _model = model;
             _view = view;
             _coreSettingsModel = coreSettingsModel;
         }
@@ -35,7 +34,7 @@ namespace BallShoot.Core.Features.Bullet.Systems.SetUp
 
         private void SetUpSettings()
         {
-            _facade.Model.SettingsData = new BulletSettingsData
+            _model.SettingsData = new BulletSettingsData
             (
                 startSize: _configuration.StartSize,
                 speed: _configuration.Speed,
@@ -49,7 +48,7 @@ namespace BallShoot.Core.Features.Bullet.Systems.SetUp
         {
             _view.Transform.position = _coreSettingsModel.SpawnPositions.BulletSpawnPosition.position;
             _view.Rigidbody.velocity = Vector3.zero;
-            _view.Transform.localScale = _facade.Model.SettingsData.StartSize;
+            _view.Transform.localScale = _model.SettingsData.StartSize;
         }
     }
 }

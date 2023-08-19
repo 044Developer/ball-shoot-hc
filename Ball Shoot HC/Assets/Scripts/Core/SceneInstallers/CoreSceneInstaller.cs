@@ -113,6 +113,7 @@ namespace BallShoot.Core.SceneInstallers
                 .BindFactory<BulletFacade, BulletFacade.Factory>()
                 .FromPoolableMemoryPool<BulletFacade, BulletFacadePool>(binder 
                     => binder
+                        .WithInitialSize(5)
                         .FromSubContainerResolve()
                         .ByNewPrefabInstaller<BulletInstaller>(_coreSettingsModel.PrefabSettings.BulletPrefab)
                         .UnderTransform(_coreSceneModel.DynamicPrefabParent)

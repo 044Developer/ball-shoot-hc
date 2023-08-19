@@ -23,42 +23,42 @@ namespace BallShoot.Core.Features.Bullet.Binder
         {
             Container
                 .Bind<BulletModel>()
-                .AsTransient();
+                .AsSingle();
         }
 
         private void BindSystems()
         {
             Container
                 .BindInterfacesAndSelfTo<BulletSetUpSystem>()
-                .AsTransient();
+                .AsSingle();
 
             Container
                 .BindInterfacesAndSelfTo<BulletChangeSizeSystem>()
-                .AsTransient();
+                .AsSingle();
 
             Container
                 .Bind<IBulletFlySystem>()
                 .To<BulletFlySystem>()
-                .AsTransient();
+                .AsSingle();
 
             Container
                 .Bind<IBulletDestroySystem>()
                 .To<BulletDestroySystem>()
-                .AsTransient();
+                .AsSingle();
 
             Container
                 .Bind<IBulletLifeTimeSystem>()
                 .To<BulletLifeTimeSystem>()
-                .AsTransient();
+                .AsSingle();
 
             Container
                 .Bind<IBulletDealDamageSystem>()
                 .To<BulletDealDamageSystem>()
-                .AsTransient();
+                .AsSingle();
             
             Container
                 .BindInterfacesAndSelfTo<BulletUpdateSystem>()
-                .AsTransient()
+                .AsSingle()
             ;
         }
     }
