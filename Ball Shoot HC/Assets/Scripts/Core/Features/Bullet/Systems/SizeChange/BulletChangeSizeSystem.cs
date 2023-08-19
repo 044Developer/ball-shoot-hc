@@ -12,16 +12,16 @@ namespace BallShoot.Core.Features.Bullet.Systems.SizeChange
     public class BulletChangeSizeSystem : IInitializable, IDisposable
     {
         private readonly CoreRuntimeData _coreRuntimeData;
-        private readonly BulletModel _model;
+        private readonly BulletFacade _facade;
         private readonly BulletView _view;
 
         public BulletChangeSizeSystem(
             CoreRuntimeData coreRuntimeData,
-            BulletModel model,
+            BulletFacade facade,
             BulletView view)
         {
             _coreRuntimeData = coreRuntimeData;
-            _model = model;
+            _facade = facade;
             _view = view;
         }
 
@@ -41,20 +41,20 @@ namespace BallShoot.Core.Features.Bullet.Systems.SizeChange
 
         private void ActivateSizeChange()
         {
-            _model.RuntimeData.Status = BulletStatus.Recharge;
+            _facade.Model.RuntimeData.Status = BulletStatus.Recharge;
         }
 
         private void UpdateSize()
         {
-            if (_model.RuntimeData.Status != BulletStatus.Recharge)
+            if (_facade.Model.RuntimeData.Status != BulletStatus.Recharge)
                 return;
             
-            _view.Transform.localScale += Vector3.one * _model.SettingsData.SizeMultiplier * Time.deltaTime;
+            _view.Transform.localScale += Vector3.one * _facade.Model.SettingsData.SizeMultiplier * Time.deltaTime;
         }
 
         private void DeactivateSizeChange()
         {
-            _model.RuntimeData.Status = BulletStatus.Fly;
+            _facade.Model.RuntimeData.Status = BulletStatus.Fly;
         }
     }
 }

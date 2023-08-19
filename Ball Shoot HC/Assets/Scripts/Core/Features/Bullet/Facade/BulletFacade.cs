@@ -8,27 +8,27 @@ namespace BallShoot.Core.Features.Bullet.Facade
 {
     public class BulletFacade : MonoBehaviour, IPoolable<IMemoryPool>
     {
-        private BulletModel _bulletModel;
+        public BulletModel Model { get; private set; }
         private IMemoryPool _pool;
         private IBulletSetUpSystem _setUpSystem;
 
         [Inject]
         public void Construct(BulletModel bulletModel, IBulletSetUpSystem setUpSystem)
         {
-            _bulletModel = bulletModel;
+            Model = bulletModel;
             _setUpSystem = setUpSystem;
         }
         
         public void OnSpawned(IMemoryPool pool)
         {
             _pool = pool;
-            _bulletModel.RuntimeData.Status = BulletStatus.Recharge;
+            Model.RuntimeData.Status = BulletStatus.Recharge;
             _setUpSystem.ResetBullet();
         }
         
         public void OnDespawned()
         {
-            _bulletModel.RuntimeData.Status = BulletStatus.InActive;
+            Model.RuntimeData.Status = BulletStatus.InActive;
             _pool = null;
         }
 

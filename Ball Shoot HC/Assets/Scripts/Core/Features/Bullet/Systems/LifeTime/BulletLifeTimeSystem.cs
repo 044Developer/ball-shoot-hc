@@ -8,20 +8,20 @@ namespace BallShoot.Core.Features.Bullet.Systems.LifeTime
 {
     public class BulletLifeTimeSystem : IBulletLifeTimeSystem
     {
-        private readonly BulletModel _model;
+        private readonly BulletFacade _facade;
         private readonly IBulletDestroySystem _destroySystem;
 
         public BulletLifeTimeSystem(
-            BulletModel model,
+            BulletFacade facade,
             IBulletDestroySystem destroySystem)
         {
-            _model = model;
+            _facade = facade;
             _destroySystem = destroySystem;
         }
         
         public void Tick()
         {
-            if (_model.RuntimeData.Status != BulletStatus.Fly)
+            if (_facade.Model.RuntimeData.Status != BulletStatus.Fly)
                 return;
 
             CountDownLifeTime();
@@ -29,12 +29,12 @@ namespace BallShoot.Core.Features.Bullet.Systems.LifeTime
 
         private void CountDownLifeTime()
         {
-            _model.RuntimeData.CurrentLifeTime += Time.deltaTime;
+            _facade.Model.RuntimeData.CurrentLifeTime += Time.deltaTime;
 
-            if (_model.RuntimeData.CurrentLifeTime > _model.SettingsData.LifeTime)
+            if (_facade.Model.RuntimeData.CurrentLifeTime > _facade.Model.SettingsData.LifeTime)
             {
                 _destroySystem.DestroyBullet();
-                _model.RuntimeData.CurrentLifeTime = 0;
+                _facade.Model.RuntimeData.CurrentLifeTime = 0;
             }
         }
     }
