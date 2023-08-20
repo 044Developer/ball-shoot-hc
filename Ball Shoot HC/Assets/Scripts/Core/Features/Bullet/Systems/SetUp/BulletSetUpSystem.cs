@@ -49,6 +49,7 @@ namespace BallShoot.Core.Features.Bullet.Systems.SetUp
             _view.Transform.position = _coreSettingsModel.SpawnPositions.BulletSpawnPosition.position;
             _view.Rigidbody.velocity = Vector3.zero;
             _view.Transform.localScale = _model.SettingsData.StartSize;
+            _model.RuntimeData.CurrentLifeTime = 0;
         }
     }
 }

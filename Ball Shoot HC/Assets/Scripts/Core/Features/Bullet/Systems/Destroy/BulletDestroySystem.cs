@@ -19,7 +19,6 @@ namespace BallShoot.Core.Features.Bullet.Systems.Destroy
         
         public void DestroyBullet()
         {
-            _vfxFactory.Create(_model.ExplosionData.TargetPosition, _model.ExplosionData.Radius);
             _bulletFacade.Die();
         }
     }

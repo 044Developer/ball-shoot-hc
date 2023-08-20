@@ -35,7 +35,6 @@ namespace BallShoot.Core.Features.Bullet.Systems.LifeTime
             if (_model.RuntimeData.CurrentLifeTime > _model.SettingsData.LifeTime)
             {
                 _destroySystem.DestroyBullet();
-                _model.RuntimeData.CurrentLifeTime = 0;
             }
         }
     }
