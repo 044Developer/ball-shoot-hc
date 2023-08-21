@@ -17,28 +17,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 2
-      inSlope: -1.8075359
-      outSlope: -1.8075359
+      time: 0.0007843137
+      value: 1.004717
+      inSlope: -1.0007832
+      outSlope: -1.0007832
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.91898024
-      value: 0.33891022
-      inSlope: -2.995296
-      outSlope: -2.995296
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -4.1830564
-      outSlope: -4.1830564
+      value: 0.0047187805
+      inSlope: -1.0007832
+      outSlope: -1.0007832
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -76,3 +67,6 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  _minPlayerSize: 0.1
+  _jumpForce: {x: 0, y: 2.5, z: 2.8}
+  _delayBetweenJumps: 0.8

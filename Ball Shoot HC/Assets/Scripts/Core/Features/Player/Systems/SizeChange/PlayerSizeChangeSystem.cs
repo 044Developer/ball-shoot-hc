@@ -1,6 +1,7 @@
 using System;
 using BallShoot.Core.Data.Runtime;
 using BallShoot.Core.Features.Bullet.Facade;
+using BallShoot.Core.Features.Player.Data;
 using BallShoot.Core.Features.Player.Models;
 using BallShoot.Core.Features.Player.View;
 using UnityEngine;
@@ -10,15 +11,10 @@ namespace BallShoot.Core.Features.Player.Systems.SizeChange
 {
     public class PlayerSizeChangeSystem : IInitializable, IDisposable
     {
-        private const int FIRST_CURVE_KEY_INDEX = 0;
-        private const int LAST_CURVE_KEY_INDEX = 1;
-        
         private readonly IPlayerView _view;
         private readonly PlayerModel _playerModel;
         private readonly CoreRuntimeData _coreRuntimeData;
         private readonly BulletFacade.Factory _bulletPool;
-
-        private float _currentInputDuration = 0f;
 
         public PlayerSizeChangeSystem(IPlayerView view, PlayerModel playerModel, CoreRuntimeData coreRuntimeData, BulletFacade.Factory bulletPool)
         {
@@ -44,13 +40,21 @@ namespace BallShoot.Core.Features.Player.Systems.SizeChange
 
         private void ActivateSizeChange()
         {
-            _currentInputDuration = 0;
+            if (_playerModel.RuntimeData.Status == PlayerStatus.Died 
+                || _playerModel.RuntimeData.Status == PlayerStatus.Moving)
+                return;
+
+            _playerModel.RuntimeData.Status = PlayerStatus.Pressed;
             _bulletPool.Create();
         }
 
         private void UpdateSize()
         {
-            _currentInputDuration += Time.deltaTime;
+            if (_playerModel.RuntimeData.Status == PlayerStatus.Died 
+                || _playerModel.RuntimeData.Status == PlayerStatus.Moving)
+                return;
+
+            IncreasePressValue();
             
             CalculateDecreaseValue();
             SetCurrentSize();
@@ -61,13 +65,23 @@ namespace BallShoot.Core.Features.Player.Systems.SizeChange
 
         private void DeactivateSizeChange()
         {
+            if (_playerModel.RuntimeData.Status == PlayerStatus.Died 
+                || _playerModel.RuntimeData.Status == PlayerStatus.Moving)
+                return;
+            
+            _playerModel.RuntimeData.Status = PlayerStatus.InActive;
+        }
+
+        private void IncreasePressValue()
+        {
+            _playerModel.RuntimeData.CurrentInputDuration += Time.deltaTime;
         }
 
         #region Size
 
         private void CalculateDecreaseValue()
         {
-            var inputDuration = _currentInputDuration * _playerModel.SettingsData.AnimationSpeed;
+            var inputDuration = _playerModel.RuntimeData.CurrentInputDuration * _playerModel.SettingsData.AnimationSpeed;
             var currentDecreaseValue = _playerModel.SettingsData.SizeDecreaseCurve.Evaluate(inputDuration);
             _playerModel.RuntimeData.CurrentPlayerSize = Vector3.one * currentDecreaseValue;
         }
@@ -83,8 +97,7 @@ namespace BallShoot.Core.Features.Player.Systems.SizeChange
 
         private void CalculateColorValue()
         {
-            var colorValue = (1f - _playerModel.SettingsData.SizeDecreaseCurve.keys[FIRST_CURVE_KEY_INDEX].value) * _playerModel.RuntimeData.CurrentPlayerSize.x + _playerModel.SettingsData.SizeDecreaseCurve.keys[FIRST_CURVE_KEY_INDEX].value;
-            _playerModel.RuntimeData.CurrentPlayerColor = _playerModel.SettingsData.ColorChangeCurve.Evaluate(colorValue);
+            _playerModel.RuntimeData.CurrentPlayerColor = _playerModel.SettingsData.ColorChangeCurve.Evaluate(_playerModel.RuntimeData.CurrentInputDuration);
         }
 
         private void SetCurrentColor()

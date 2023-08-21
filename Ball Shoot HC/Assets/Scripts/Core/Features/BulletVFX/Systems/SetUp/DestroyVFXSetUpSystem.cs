@@ -30,7 +30,7 @@ namespace BallShoot.Core.Features.BulletVFX.Systems.SetUp
 
         public void ActivateVFX()
         {
-            _view.ParticleTransform.position = _model.RuntimeData.SpawnPosition;
+            _view.ParticleTransform.position =new Vector3(_model.RuntimeData.SpawnPosition.x, 0, _model.RuntimeData.SpawnPosition.z);
             _view.ParticleTransform.localScale = Vector3.one * _model.RuntimeData.PoisonRadius;
             _view.ParticleObject.SetActive(true);
         }

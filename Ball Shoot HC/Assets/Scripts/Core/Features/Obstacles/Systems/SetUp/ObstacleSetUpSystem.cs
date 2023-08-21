@@ -39,6 +39,8 @@ namespace BallShoot.Core.Features.Obstacles.Systems.SetUp
         {
             _model.RuntimeData.CurrentDestructionTime = 0f;
             _model.RuntimeData.State = ObstacleState.InActive;
+            _view.Collider.gameObject.SetActive(true);
+
 
             foreach (GameObject obstacle in _view.ObstaclesObject) 
                 obstacle.SetActive(true);

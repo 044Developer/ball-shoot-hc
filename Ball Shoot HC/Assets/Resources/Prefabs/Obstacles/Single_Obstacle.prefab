@@ -66,6 +66,7 @@ MonoBehaviour:
   - {fileID: 8202167064035290086}
   _obstaclesMesh:
   - {fileID: 7251770828309600699}
+  _collider: {fileID: 4176365610446840455}
 --- !u!114 &9851644883525945
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -72,6 +72,7 @@ MonoBehaviour:
   - {fileID: 1847347058666202776}
   - {fileID: 7526898636273162177}
   - {fileID: 2140305838693994286}
+  _collider: {fileID: 8814427610107079885}
 --- !u!114 &6126169608120861488
 MonoBehaviour:
   m_ObjectHideFlags: 0

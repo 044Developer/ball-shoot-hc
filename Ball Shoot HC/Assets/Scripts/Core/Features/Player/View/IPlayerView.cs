@@ -6,5 +6,6 @@ namespace BallShoot.Core.Features.Player.View
     {
         public Transform PlayerTransform { get; }
         public MeshRenderer PlayerMesh { get; }
+        public Rigidbody Rigidbody { get; }
     }
 }
