@@ -39,7 +39,7 @@ namespace BallShoot.Core.Features.Obstacles.Facade
 
         public void TakeDamage()
         {
-            _view.Collider.gameObject.SetActive(false);
+            _view.Collider.enabled = false;
             _model.RuntimeData.State = ObstacleState.Destruction;
         }
 

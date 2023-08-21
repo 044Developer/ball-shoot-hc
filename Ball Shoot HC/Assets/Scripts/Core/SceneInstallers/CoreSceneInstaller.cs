@@ -10,6 +10,8 @@ using BallShoot.Core.Features.Obstacles.Binder;
 using BallShoot.Core.Features.Obstacles.Facade;
 using BallShoot.Core.Features.Player.Binder;
 using BallShoot.Core.Features.Player.View;
+using BallShoot.Core.Features.Road.Binder;
+using BallShoot.Core.Features.Road.View;
 using BallShoot.Core.MonoModels;
 using BallShoot.Core.Systems.ObstaclesSpawn;
 using BallShoot.Core.Systems.Update;
@@ -83,6 +85,8 @@ namespace BallShoot.Core.SceneInstallers
         {
             BindExitDoor();
 
+            BindRoad();
+
             BindBullet();
 
             BindDestroyVFX();
@@ -99,6 +103,18 @@ namespace BallShoot.Core.SceneInstallers
                 .To<ExitDoorView>()
                 .FromSubContainerResolve()
                 .ByNewPrefabInstaller<ExitDoorInstaller>(_coreSettingsModel.PrefabSettings.ExitDoorPrefab)
+                .UnderTransform(_coreSceneModel.DynamicPrefabParent)
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindRoad()
+        {
+            Container
+                .Bind<IRoadView>()
+                .To<RoadView>()
+                .FromSubContainerResolve()
+                .ByNewPrefabInstaller<RoadInstaller>(_coreSettingsModel.PrefabSettings.RoadPrefab)
                 .UnderTransform(_coreSceneModel.DynamicPrefabParent)
                 .AsSingle()
                 .NonLazy();

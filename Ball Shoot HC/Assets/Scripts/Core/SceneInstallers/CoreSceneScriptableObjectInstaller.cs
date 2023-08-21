@@ -3,6 +3,7 @@ using BallShoot.Core.Features.BulletVFX.Configuration;
 using BallShoot.Core.Features.ExitDoor.Configs;
 using BallShoot.Core.Features.Obstacles.Configuration;
 using BallShoot.Core.Features.Player.Configs;
+using BallShoot.Core.Features.Road.Configuration;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +17,7 @@ namespace BallShoot.Core.SceneInstallers
         [SerializeField] private BulletConfiguration _bulletConfiguration;
         [SerializeField] private DestroyVFXConfiguration _vfxConfiguration;
         [SerializeField] private ObstacleConfiguration _obstacleConfiguration;
+        [SerializeField] private RoadConfiguration _roadConfiguration;
     
         public override void InstallBindings()
         {
@@ -46,6 +48,11 @@ namespace BallShoot.Core.SceneInstallers
         
             Container
                 .BindInstance(_obstacleConfiguration)
+                .AsSingle()
+                .NonLazy();
+        
+            Container
+                .BindInstance(_roadConfiguration)
                 .AsSingle()
                 .NonLazy();
         }

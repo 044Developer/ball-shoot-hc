@@ -25,8 +25,11 @@ namespace BallShoot.Core.Features.Obstacles.Systems.SetUp
         
         public void Initialize()
         {
-            _model.RuntimeData = new ObstacleRuntimeData();
-            _model.RuntimeData.State = ObstacleState.InActive;
+            _model.RuntimeData = new ObstacleRuntimeData
+            {
+                State = ObstacleState.InActive,
+                CurrentDestructionTime = 0
+            };
 
             _model.SettingsData = new ObstacleSettingsData
             (
@@ -40,6 +43,7 @@ namespace BallShoot.Core.Features.Obstacles.Systems.SetUp
             _model.RuntimeData.CurrentDestructionTime = 0f;
             _model.RuntimeData.State = ObstacleState.InActive;
             _view.Collider.gameObject.SetActive(true);
+            _view.Collider.enabled = true;
 
 
             foreach (GameObject obstacle in _view.ObstaclesObject) 

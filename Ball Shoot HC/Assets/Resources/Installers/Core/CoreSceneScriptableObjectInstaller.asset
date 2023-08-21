@@ -17,3 +17,4 @@ MonoBehaviour:
   _bulletConfiguration: {fileID: 11400000, guid: bda99247c9676bf4caa925836c1caeaa, type: 2}
   _vfxConfiguration: {fileID: 11400000, guid: 231448820b7828a47aaaa709a763f16a, type: 2}
   _obstacleConfiguration: {fileID: 11400000, guid: 2cbab4f16b07a42439f676e6d6d74fd5, type: 2}
+  _roadConfiguration: {fileID: 11400000, guid: f41a814f0950b294ab36d41a24095584, type: 2}

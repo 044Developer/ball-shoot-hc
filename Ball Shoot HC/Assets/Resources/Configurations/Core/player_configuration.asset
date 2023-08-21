@@ -67,6 +67,6 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  _minPlayerSize: 0.1
+  _minPlayerSize: 0.2
   _jumpForce: {x: 0, y: 2.5, z: 2.8}
   _delayBetweenJumps: 0.8

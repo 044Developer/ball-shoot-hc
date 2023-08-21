@@ -10,6 +10,9 @@ namespace BallShoot.Core.Data.Settings
         [Header("Exit Door")]
         [SerializeField] private Transform _exitDoorSpawnPosition;
 
+        [Header("Road")]
+        [SerializeField] private Transform _roadSpawnPosition;
+
         [Header("Player")]
         [SerializeField] private Transform _playerSpawnPosition;
 
@@ -20,6 +23,7 @@ namespace BallShoot.Core.Data.Settings
         [SerializeField] private List<Transform> _obstacleAreaPositions;
         
         public Transform ExitDoorSpawnPosition => _exitDoorSpawnPosition;
+        public Transform RoadSpawnPosition => _roadSpawnPosition;
         public Transform PlayerSpawnPosition => _playerSpawnPosition;
         public Transform BulletSpawnPosition => _bulletSpawnPosition;
         public List<Transform> ObstacleAreaPositions => _obstacleAreaPositions;
