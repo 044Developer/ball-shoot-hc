@@ -7,10 +7,10 @@ namespace BallShoot.Core.Features.Bullet.Systems.Fly
 {
     public class BulletFlySystem : IBulletFlySystem
     {
-        private readonly BulletView _view;
+        private readonly IBulletView _view;
         private readonly BulletModel _model;
 
-        public BulletFlySystem(BulletView view, BulletModel model)
+        public BulletFlySystem(IBulletView view, BulletModel model)
         {
             _view = view;
             _model = model;

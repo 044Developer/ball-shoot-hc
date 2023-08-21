@@ -12,12 +12,12 @@ namespace BallShoot.Core.Features.Bullet.Systems.SizeChange
     {
         private readonly CoreRuntimeData _coreRuntimeData;
         private readonly BulletModel _model;
-        private readonly BulletView _view;
+        private readonly IBulletView _view;
 
         public BulletChangeSizeSystem(
             CoreRuntimeData coreRuntimeData,
             BulletModel model,
-            BulletView view)
+            IBulletView view)
         {
             _coreRuntimeData = coreRuntimeData;
             _model = model;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BallShoot.Core.Features.Obstacles.View
 {
-    public class ObstacleView : MonoBehaviour
+    public class ObstacleView : MonoBehaviour, IObstacleView
     {
         [SerializeField] private Transform _transform;
         [SerializeField] private List<GameObject> _obstaclesObject;

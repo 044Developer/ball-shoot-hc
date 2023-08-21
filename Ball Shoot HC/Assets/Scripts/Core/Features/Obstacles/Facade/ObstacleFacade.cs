@@ -11,13 +11,13 @@ namespace BallShoot.Core.Features.Obstacles.Facade
     {
         private IMemoryPool _pool;
         private IObstacleSetUpSystem _setUpSystem;
-        private ObstacleView _view;
+        private IObstacleView _view;
         private ObstacleModel _model;
         
         [Inject]
         public void Construct(
             IObstacleSetUpSystem setUpSystem,
-            ObstacleView view,
+            IObstacleView view,
             ObstacleModel model)
         {
             _setUpSystem = setUpSystem;

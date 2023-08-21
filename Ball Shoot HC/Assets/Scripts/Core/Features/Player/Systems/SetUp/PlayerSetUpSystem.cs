@@ -66,8 +66,6 @@ namespace BallShoot.Core.Features.Player.Systems.SetUp
         {
             _view.PlayerTransform.position = _coreSettingsModel.SpawnPositions.PlayerSpawnPosition.position;
             _view.Rigidbody.velocity = Vector3.zero;
-
-            _playerModel.RuntimeData.Status = PlayerStatus.Moving;
         }
 
         public void ResetPlayer()

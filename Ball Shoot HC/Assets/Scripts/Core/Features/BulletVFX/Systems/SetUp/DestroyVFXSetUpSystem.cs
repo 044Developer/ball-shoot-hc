@@ -11,9 +11,9 @@ namespace BallShoot.Core.Features.BulletVFX.Systems.SetUp
     {
         private readonly DestroyVFXModel _model;
         private readonly DestroyVFXConfiguration _configuration;
-        private readonly DestroyVFXView _view;
+        private readonly IDestroyVFXView _view;
 
-        public DestroyVFXSetUpSystem(DestroyVFXModel model, DestroyVFXConfiguration configuration, DestroyVFXView view)
+        public DestroyVFXSetUpSystem(DestroyVFXModel model, DestroyVFXConfiguration configuration, IDestroyVFXView view)
         {
             _model = model;
             _configuration = configuration;

@@ -12,13 +12,13 @@ namespace BallShoot.Core.Features.Bullet.Systems.SetUp
     {
         private readonly BulletConfiguration _configuration;
         private readonly BulletModel _model;
-        private readonly BulletView _view;
+        private readonly IBulletView _view;
         private readonly CoreSettingsModel _coreSettingsModel;
 
         public BulletSetUpSystem(
             BulletConfiguration configuration,
             BulletModel model,
-            BulletView view,
+            IBulletView view,
             CoreSettingsModel coreSettingsModel)
         {
             _configuration = configuration;

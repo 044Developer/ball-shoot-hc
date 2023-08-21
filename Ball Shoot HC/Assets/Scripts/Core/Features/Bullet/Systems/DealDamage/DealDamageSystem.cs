@@ -12,13 +12,13 @@ namespace BallShoot.Core.Features.Bullet.Systems.DealDamage
 {
     public class BulletDealDamageSystem : IInitializable, IDisposable
     {
-        private readonly BulletView _view;
+        private readonly IBulletView _view;
         private readonly IBulletDestroySystem _destroySystem;
         private readonly BulletModel _model;
         private readonly DestroyVFXFacade.Factory _vfxFactory;
 
         public BulletDealDamageSystem(
-            BulletView view,
+            IBulletView view,
             IBulletDestroySystem destroySystem,
             BulletModel model, DestroyVFXFacade.Factory vfxFactory)
         {

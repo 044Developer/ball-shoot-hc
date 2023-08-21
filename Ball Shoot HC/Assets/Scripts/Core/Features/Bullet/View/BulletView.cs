@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BallShoot.Core.Features.Bullet.View
 {
-    public class BulletView : MonoBehaviour
+    public class BulletView : MonoBehaviour, IBulletView
     {
         [SerializeField] private Transform _transform;
         [SerializeField] private Rigidbody _rigidbody;

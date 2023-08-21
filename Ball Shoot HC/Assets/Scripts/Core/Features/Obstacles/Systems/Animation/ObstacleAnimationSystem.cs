@@ -7,9 +7,9 @@ namespace BallShoot.Core.Features.Obstacles.Systems.Animation
     public class ObstacleAnimationSystem : IObstacleAnimationSystem
     {
         private readonly ObstacleModel _model;
-        private readonly ObstacleView _view;
+        private readonly IObstacleView _view;
 
-        public ObstacleAnimationSystem(ObstacleModel model, ObstacleView view)
+        public ObstacleAnimationSystem(ObstacleModel model, IObstacleView view)
         {
             _model = model;
             _view = view;

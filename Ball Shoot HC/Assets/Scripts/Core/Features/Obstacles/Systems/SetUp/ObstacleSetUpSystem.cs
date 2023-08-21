@@ -11,12 +11,12 @@ namespace BallShoot.Core.Features.Obstacles.Systems.SetUp
     {
         private readonly ObstacleModel _model;
         private readonly ObstacleConfiguration _configuration;
-        private readonly ObstacleView _view;
+        private readonly IObstacleView _view;
 
         public ObstacleSetUpSystem(
             ObstacleModel model,
             ObstacleConfiguration configuration,
-            ObstacleView view)
+            IObstacleView view)
         {
             _model = model;
             _configuration = configuration;
