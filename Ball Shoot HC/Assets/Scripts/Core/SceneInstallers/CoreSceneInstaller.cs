@@ -1,7 +1,5 @@
-using BallShoot.Core.Data.Runtime;
 using BallShoot.Core.Features.Bullet.Binder;
 using BallShoot.Core.Features.Bullet.Facade;
-using BallShoot.Core.Features.Bullet.View;
 using BallShoot.Core.Features.BulletVFX.Binder;
 using BallShoot.Core.Features.BulletVFX.Facade;
 using BallShoot.Core.Features.ExitDoor.Binder;
@@ -12,10 +10,16 @@ using BallShoot.Core.Features.Player.Binder;
 using BallShoot.Core.Features.Player.View;
 using BallShoot.Core.Features.Road.Binder;
 using BallShoot.Core.Features.Road.View;
-using BallShoot.Core.MonoModels;
+using BallShoot.Core.Systems.LevelGamePlay;
+using BallShoot.Core.Systems.LevelLoose;
+using BallShoot.Core.Systems.LevelRestart;
+using BallShoot.Core.Systems.LevelSetUp;
+using BallShoot.Core.Systems.LevelWin;
 using BallShoot.Core.Systems.ObstaclesSpawn;
 using BallShoot.Core.Systems.Update;
 using BallShoot.Core.Systems.UserInput;
+using BallShoot.Core.MonoModels;
+using BallShoot.Core.Data.Runtime;
 using UnityEngine;
 using Zenject;
 
@@ -83,6 +87,8 @@ namespace BallShoot.Core.SceneInstallers
 
         private void BindFeatures()
         {
+            BindLevel();
+            
             BindExitDoor();
 
             BindRoad();
@@ -94,6 +100,44 @@ namespace BallShoot.Core.SceneInstallers
             BindPlayer();
 
             BindObstacles();
+        }
+
+        private void BindLevel()
+        {
+            Container
+                .Bind<LevelRuntimeData>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<ILevelSetUpSystem>()
+                .To<LevelSetUpSystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<ILevelRestartSystem>()
+                .To<LevelRestartSystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<ILevelLooseSystem>()
+                .To<LevelLooseSystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<ILevelWinSystem>()
+                .To<LevelWinSystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .Bind<ILevelGamePlaySystem>()
+                .To<LevelGamePlaySystem>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindExitDoor()
