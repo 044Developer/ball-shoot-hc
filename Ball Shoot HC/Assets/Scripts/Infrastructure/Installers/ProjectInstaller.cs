@@ -1,5 +1,9 @@
 using BallShoot.Infrastructure.Bootstrap;
+using BallShoot.Infrastructure.Modules.AssetProvider;
+using BallShoot.Infrastructure.Modules.AssetProvider.Implementation;
 using BallShoot.Infrastructure.Modules.CoroutineRunner;
+using BallShoot.Infrastructure.Modules.CustomFactory;
+using BallShoot.Infrastructure.Modules.CustomFactory.Implementation;
 using BallShoot.Infrastructure.Modules.SceneLoader;
 using Zenject;
 
@@ -28,6 +32,10 @@ namespace BallShoot.Infrastructure.Installers
             BindCoroutineRunner();
             
             BindSceneLoader();
+
+            BindAssetProvider();
+
+            BindCustomFactory();
         }
 
         private void BindCoroutineRunner()
@@ -44,6 +52,22 @@ namespace BallShoot.Infrastructure.Installers
             Container
                 .Bind<ISceneLoaderModule>()
                 .To<SceneLoaderModule>()
+                .AsSingle();
+        }
+
+        private void BindAssetProvider()
+        {
+            Container
+                .Bind<IAssetProviderModule>()
+                .To<AssetProviderModule>()
+                .AsSingle();
+        }
+
+        private void BindCustomFactory()
+        {
+            Container
+                .Bind<ICustomFactoryModule>()
+                .To<CustomFactoryModule>()
                 .AsSingle();
         }
     }
