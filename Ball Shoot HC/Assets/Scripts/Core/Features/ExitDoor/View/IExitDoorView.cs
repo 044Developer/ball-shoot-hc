@@ -1,3 +1,4 @@
+using BallShoot.Tools.ObjectCollision;
 using UnityEngine;
 
 namespace BallShoot.Core.Features.ExitDoor.View
@@ -10,6 +11,7 @@ namespace BallShoot.Core.Features.ExitDoor.View
         Vector3 OpenedLeftDoorPosition { get; }
         Vector3 ClosedLeftDoorPosition { get; }
         Vector3 OpenedRightDoorPosition { get; }
-        Vector3 ClosedRightDoorPosition { get; }
+        Vector3 ClosedRightDoorPosition { get; }        
+        CollisionHandler CollisionHandler { get; }
     }
 }

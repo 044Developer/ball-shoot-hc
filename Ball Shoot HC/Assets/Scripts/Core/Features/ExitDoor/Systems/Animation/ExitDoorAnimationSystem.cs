@@ -22,8 +22,8 @@ namespace BallShoot.Core.Features.ExitDoor.Systems.Animation
 
         public void ForceOpenDoor()
         {
-            _view.LeftDoor.position = _view.OpenedLeftDoorPosition;
-            _view.RightDoor.position = _view.OpenedRightDoorPosition;
+            _view.LeftDoor.localPosition = _view.OpenedLeftDoorPosition;
+            _view.RightDoor.localPosition = _view.OpenedRightDoorPosition;
         }
 
         public void CloseDoor()
@@ -33,8 +33,8 @@ namespace BallShoot.Core.Features.ExitDoor.Systems.Animation
 
         public void ForceCloseDoor()
         {
-            _view.LeftDoor.position = _view.ClosedLeftDoorPosition;
-            _view.RightDoor.position = _view.ClosedRightDoorPosition;
+            _view.LeftDoor.localPosition = _view.ClosedLeftDoorPosition;
+            _view.RightDoor.localPosition = _view.ClosedRightDoorPosition;
         }
 
         #region Door Open Animation
@@ -49,9 +49,9 @@ namespace BallShoot.Core.Features.ExitDoor.Systems.Animation
                 .SetRecyclable(true)
                 .SetEase(_model.AnimationData.DoorOpenEase)
                 .Append(_view.LeftDoor
-                    .DOMove(_view.OpenedLeftDoorPosition,_model.AnimationData.DoorOpenSpeed))
+                    .DOLocalMove(_view.OpenedLeftDoorPosition,_model.AnimationData.DoorOpenSpeed))
                 .Join(_view.RightDoor
-                    .DOMove(_view.OpenedRightDoorPosition,_model.AnimationData.DoorOpenSpeed));
+                    .DOLocalMove(_view.OpenedRightDoorPosition,_model.AnimationData.DoorOpenSpeed));
 
             doorOpenSequence.Play();
         }
@@ -68,9 +68,9 @@ namespace BallShoot.Core.Features.ExitDoor.Systems.Animation
             doorCloseSequence
                 .SetEase(_model.AnimationData.DoorCloseEase)
                 .Append(_view.LeftDoor
-                    .DOMove(_view.ClosedLeftDoorPosition, _model.AnimationData.DoorCloseSpeed))
+                    .DOLocalMove(_view.ClosedLeftDoorPosition, _model.AnimationData.DoorCloseSpeed))
                 .Join(_view.RightDoor
-                    .DOMove(_view.ClosedRightDoorPosition, _model.AnimationData.DoorCloseSpeed));
+                    .DOLocalMove(_view.ClosedRightDoorPosition, _model.AnimationData.DoorCloseSpeed));
 
             doorCloseSequence.Play();
         }

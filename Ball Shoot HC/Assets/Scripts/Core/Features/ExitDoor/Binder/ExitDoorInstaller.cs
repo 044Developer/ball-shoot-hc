@@ -1,5 +1,6 @@
 using BallShoot.Core.Features.ExitDoor.Model;
 using BallShoot.Core.Features.ExitDoor.Systems.Animation;
+using BallShoot.Core.Features.ExitDoor.Systems.CheckForPlayer;
 using BallShoot.Core.Features.ExitDoor.Systems.SetUp;
 using Zenject;
 
@@ -28,10 +29,15 @@ namespace BallShoot.Core.Features.ExitDoor.Binder
                 .BindInterfacesAndSelfTo<ExitDoorSetUpSystem>()
                 .AsSingle()
                 .NonLazy();
-            
+
             Container
                 .Bind<IExitDoorAnimationSystem>()
                 .To<ExitDoorAnimationSystem>()
+                .AsSingle()
+                .NonLazy();
+                
+            Container
+                .BindInterfacesAndSelfTo<CheckForPlayerSystem>()
                 .AsSingle()
                 .NonLazy();
         }

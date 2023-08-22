@@ -24,7 +24,12 @@ namespace BallShoot.Infrastructure.Modules.SceneLoader
         {
             _coroutineRunner.StartCoroutine(LoadScene(sceneType, loadSceneMode, onLoadingFinished));
         }
-        
+
+        public void ReLoadCurrent()
+        {
+            _coroutineRunner.StartCoroutine(ReLoadCurrentScene());
+        }
+
         private IEnumerator LoadScene(SceneType sceneType, LoadSceneMode loadSceneMode, Action onLoadingFinished)
         {
             string sceneName = _sceneConfiguration.SceneModels.Find(it => it.Type == sceneType).Name ?? string.Empty;
@@ -45,6 +50,14 @@ namespace BallShoot.Infrastructure.Modules.SceneLoader
             onLoadingFinished?.Invoke();
         }
 
+        private IEnumerator ReLoadCurrentScene()
+        {
+            AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+
+            while (!waitNextScene.isDone)
+                yield return null;
+        }
+
         private void UnloadPreviousScene()
         {
             if (_previousSceneType == SceneType.None)
@@ -58,5 +71,6 @@ namespace BallShoot.Infrastructure.Modules.SceneLoader
     public interface ISceneLoaderModule
     {
         public void Load(SceneType sceneType, LoadSceneMode loadSceneMode, Action onLoadingFinished = null);
+        public void ReLoadCurrent();
     }
 }

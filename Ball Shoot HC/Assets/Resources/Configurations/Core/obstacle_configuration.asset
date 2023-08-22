@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obstacleCount: 25
   _obstacleOffset: 0.2
-  _obstacleHeight: 1
+  _obstacleHeight: 0.5
   _destructionGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.8341658, b: 0.1462264, a: 1}

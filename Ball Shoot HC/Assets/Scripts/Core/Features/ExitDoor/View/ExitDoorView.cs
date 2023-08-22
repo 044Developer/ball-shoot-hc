@@ -1,3 +1,4 @@
+using BallShoot.Tools.ObjectCollision;
 using UnityEngine;
 
 namespace BallShoot.Core.Features.ExitDoor.View
@@ -17,6 +18,9 @@ namespace BallShoot.Core.Features.ExitDoor.View
         [SerializeField] private Vector3 _openedRightDoorPosition;
         [SerializeField] private Vector3 _closedRightDoorPosition;
 
+        [Header("Collision Handler")]
+        [SerializeField] private CollisionHandler _collisionHandler;
+
         public Transform ExitDoorTransform => _exitDoorTransform;
         public Transform LeftDoor => _leftDoor;
         public Transform RightDoor => _rightDoor;
@@ -24,5 +28,6 @@ namespace BallShoot.Core.Features.ExitDoor.View
         public Vector3 ClosedLeftDoorPosition => _closedLeftDoorPosition;
         public Vector3 OpenedRightDoorPosition => _openedRightDoorPosition;
         public Vector3 ClosedRightDoorPosition => _closedRightDoorPosition;
+        public CollisionHandler CollisionHandler => _collisionHandler;
     }
 }
