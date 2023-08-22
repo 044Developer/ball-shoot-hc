@@ -33,6 +33,9 @@ namespace BallShoot.Core.Systems.LevelGamePlay
         
         public void ChangeLevelState(LevelStateType newState)
         {
+            if (CurrentLevelState == newState)
+                return;
+
             switch (newState)
             {
                 case LevelStateType.Win:

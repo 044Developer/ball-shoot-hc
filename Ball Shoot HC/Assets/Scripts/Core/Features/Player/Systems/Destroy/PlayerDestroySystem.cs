@@ -19,7 +19,6 @@ namespace BallShoot.Core.Features.Player.Systems.Destroy
         public void Die()
         {
             _model.RuntimeData.Status = PlayerStatus.Died;
-            _levelGamePlaySystem.ChangeLevelState(LevelStateType.Loose);
         }
     }
 }
