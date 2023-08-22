@@ -1,19 +1,21 @@
-using BallShoot.Infrastructure.Modules.SceneLoader;
+using BallShoot.Infrastructure.Modules.UserInterface.Data;
+using BallShoot.Infrastructure.Modules.UserInterface.MonoComponents.Win;
+using BallShoot.Infrastructure.Modules.UserInterface.Screens;
 
 namespace BallShoot.Core.Systems.LevelWin
 {
     public class LevelWinSystem : ILevelWinSystem
     {
-        private readonly ISceneLoaderModule _sceneLoaderModule;
+        private readonly IScreensModule _screensModule;
 
-        public LevelWinSystem(ISceneLoaderModule sceneLoaderModule)
+        public LevelWinSystem(IScreensModule screensModule)
         {
-            _sceneLoaderModule = sceneLoaderModule;
+            _screensModule = screensModule;
         }
         
         public void ProceedLevelWin()
         {
-            _sceneLoaderModule.ReLoadCurrent();
+            _screensModule.OpenScreen<WinScreen>(UIType.Win);
         }
     }
 }

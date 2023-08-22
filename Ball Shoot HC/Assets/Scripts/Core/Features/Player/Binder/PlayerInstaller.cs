@@ -51,8 +51,7 @@ namespace BallShoot.Core.Features.Player.Binder
                 .NonLazy();
 
             Container
-                .Bind<IPlayerJumpSystem>()
-                .To<PlayerJumpSystem>()
+                .BindInterfacesAndSelfTo<PlayerJumpSystem>()
                 .AsSingle()
                 .NonLazy();
 

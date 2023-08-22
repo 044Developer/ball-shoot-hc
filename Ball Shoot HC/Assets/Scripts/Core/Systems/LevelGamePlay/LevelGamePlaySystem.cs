@@ -1,33 +1,40 @@
+using System;
 using BallShoot.Core.Data.Types;
 using BallShoot.Core.Systems.LevelLoose;
-using BallShoot.Core.Systems.LevelRestart;
 using BallShoot.Core.Systems.LevelWin;
+using BallShoot.Infrastructure.Modules.UserInterface.Data;
+using BallShoot.Infrastructure.Modules.UserInterface.Hud;
+using BallShoot.Infrastructure.Modules.UserInterface.MonoComponents.Hud;
+using BallShoot.Infrastructure.Modules.UserInterface.MonoComponents.Loading;
+using Zenject;
 
 namespace BallShoot.Core.Systems.LevelGamePlay
 {
-    public class LevelGamePlaySystem : ILevelGamePlaySystem
+    public class LevelGamePlaySystem : ILevelGamePlaySystem, IInitializable, IDisposable
     {
-        private readonly ILevelRestartSystem _restartSystem;
         private readonly ILevelWinSystem _levelWinSystem;
         private readonly ILevelLooseSystem _levelLooseSystem;
+        private readonly LoadingScreenRuntimeData _loadingScreenRuntimeData;
+        private readonly IHudModule _hudModule;
+
+        public LevelStateType CurrentLevelState { get; private set; }
 
         public LevelGamePlaySystem(
-            ILevelRestartSystem restartSystem,
             ILevelWinSystem levelWinSystem,
-            ILevelLooseSystem levelLooseSystem)
+            ILevelLooseSystem levelLooseSystem, 
+            LoadingScreenRuntimeData loadingScreenRuntimeData,
+            IHudModule hudModule)
         {
-            _restartSystem = restartSystem;
             _levelWinSystem = levelWinSystem;
             _levelLooseSystem = levelLooseSystem;
+            _loadingScreenRuntimeData = loadingScreenRuntimeData;
+            _hudModule = hudModule;
         }
         
         public void ChangeLevelState(LevelStateType newState)
         {
             switch (newState)
             {
-                case LevelStateType.Restart:
-                    _restartSystem.RestartLevel();
-                    break;
                 case LevelStateType.Win:
                     _levelWinSystem.ProceedLevelWin();
                     break;
@@ -35,6 +42,27 @@ namespace BallShoot.Core.Systems.LevelGamePlay
                     _levelLooseSystem.ProceedLevelLose();
                     break;
             }
+
+            CurrentLevelState = newState;
+        }
+
+        public void Initialize()
+        {
+            _loadingScreenRuntimeData.OnLoadingAnimationEnd += OnLoadingScreenAnimationEnd;
+
+            ChangeLevelState(LevelStateType.None);
+        }
+
+        public void Dispose()
+        {
+            _loadingScreenRuntimeData.OnLoadingAnimationEnd -= OnLoadingScreenAnimationEnd;
+        }
+
+        private void OnLoadingScreenAnimationEnd()
+        {
+            ChangeLevelState(LevelStateType.Play);
+            
+            _hudModule.OpenHud<HudScreen>(UIType.Hud);
         }
     }
 }

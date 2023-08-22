@@ -1,20 +1,15 @@
 using System.Collections.Generic;
 using BallShoot.Infrastructure.Modules.UserInterface.Data;
-using Zenject;
 
 namespace BallShoot.Infrastructure.Modules.UserInterface.Container
 {
-    public class UIPathContainer : IUIPathContainer, IInitializable
+    public class UIPathContainer : IUIPathContainer
     {
         private readonly Dictionary<UIType, string> _cachedPanelConfigs = null;
 
         public UIPathContainer()
         {
             _cachedPanelConfigs = new Dictionary<UIType, string>();
-        }
-
-        public void Initialize()
-        {
             RegisterConfigs();
         }
         

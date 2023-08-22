@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BallShoot
+namespace BallShoot.Infrastructure.Modules.UserInterface.MonoComponents.Root
 {
     public class UIRoot : MonoBehaviour, IUIRoot
     {

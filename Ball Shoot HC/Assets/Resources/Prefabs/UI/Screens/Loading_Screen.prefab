@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6374304670805104023}
   - component: {fileID: 3479998467859523014}
   - component: {fileID: 5122836795835089588}
+  - component: {fileID: 7789613316714982555}
   m_Layer: 0
   m_Name: Animate_Dot_5
   m_TagString: Untagged
@@ -75,6 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &7789613316714982555
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823129234399394904}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1685737891956662102
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +99,7 @@ GameObject:
   - component: {fileID: 7658480188870571555}
   - component: {fileID: 8693714281419006974}
   - component: {fileID: 5458492310268349600}
+  - component: {fileID: 7463411772035326047}
   m_Layer: 0
   m_Name: Animate_Dot_2
   m_TagString: Untagged
@@ -150,6 +164,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &7463411772035326047
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685737891956662102}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2699480820026548283
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +187,7 @@ GameObject:
   - component: {fileID: 1857988793306007507}
   - component: {fileID: 3717020681065157804}
   - component: {fileID: 8866155797553528532}
+  - component: {fileID: 6113110218858107655}
   m_Layer: 0
   m_Name: Animate_Dot_4
   m_TagString: Untagged
@@ -225,6 +252,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &6113110218858107655
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699480820026548283}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3488972752133386331
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +275,7 @@ GameObject:
   - component: {fileID: 6434466764541857003}
   - component: {fileID: 3567826344749737707}
   - component: {fileID: 5535432219472324451}
+  - component: {fileID: 3258156876416917995}
   m_Layer: 0
   m_Name: Animate_Dot_3
   m_TagString: Untagged
@@ -300,6 +340,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3258156876416917995
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3488972752133386331}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4569037082857471962
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1997094732581679814}
   - component: {fileID: 8834190360985684341}
+  - component: {fileID: 4251665915622514589}
   m_Layer: 0
   m_Name: Loading_Screen
   m_TagString: Untagged
@@ -351,6 +404,27 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &4251665915622514589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569037082857471962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1877c078b6efb804f9a0d05fa8bf4a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _viewModel:
+    _canvasGroup: {fileID: 8834190360985684341}
+    _animatedDotsGroup:
+    - {fileID: 6303015958422319151}
+    - {fileID: 7463411772035326047}
+    - {fileID: 3258156876416917995}
+    - {fileID: 6113110218858107655}
+    - {fileID: 7789613316714982555}
+    _fadeDuration: 0.5
 --- !u!1 &5473985491669866743
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +551,7 @@ GameObject:
   - component: {fileID: 881822195134595883}
   - component: {fileID: 1790431343079809807}
   - component: {fileID: 7804051480372923648}
+  - component: {fileID: 6303015958422319151}
   m_Layer: 0
   m_Name: Animate_Dot_1
   m_TagString: Untagged
@@ -541,6 +616,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &6303015958422319151
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8855567892367432316}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &9109058765813587671
 GameObject:
   m_ObjectHideFlags: 0

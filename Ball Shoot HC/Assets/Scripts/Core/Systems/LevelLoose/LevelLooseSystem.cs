@@ -1,19 +1,21 @@
-using BallShoot.Infrastructure.Modules.SceneLoader;
+using BallShoot.Infrastructure.Modules.UserInterface.Data;
+using BallShoot.Infrastructure.Modules.UserInterface.MonoComponents.Loose;
+using BallShoot.Infrastructure.Modules.UserInterface.Screens;
 
 namespace BallShoot.Core.Systems.LevelLoose
 {
     public class LevelLooseSystem : ILevelLooseSystem
     {
-        private readonly ISceneLoaderModule _sceneLoaderModule;
+        private readonly IScreensModule _screensModule;
 
-        public LevelLooseSystem(ISceneLoaderModule sceneLoaderModule)
+        public LevelLooseSystem(IScreensModule screensModule)
         {
-            _sceneLoaderModule = sceneLoaderModule;
+            _screensModule = screensModule;
         }
         
         public void ProceedLevelLose()
         {
-            _sceneLoaderModule.ReLoadCurrent();
+            _screensModule.OpenScreen<LooseScreen>(UIType.Loose);
         }
     }
 }

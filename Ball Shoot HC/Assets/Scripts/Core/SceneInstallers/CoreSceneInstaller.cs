@@ -12,7 +12,6 @@ using BallShoot.Core.Features.Road.Binder;
 using BallShoot.Core.Features.Road.View;
 using BallShoot.Core.Systems.LevelGamePlay;
 using BallShoot.Core.Systems.LevelLoose;
-using BallShoot.Core.Systems.LevelRestart;
 using BallShoot.Core.Systems.LevelWin;
 using BallShoot.Core.Systems.ObstaclesSpawn;
 using BallShoot.Core.Systems.Update;
@@ -104,12 +103,6 @@ namespace BallShoot.Core.SceneInstallers
         private void BindLevel()
         {
             Container
-                .Bind<ILevelRestartSystem>()
-                .To<LevelRestartSystem>()
-                .AsSingle()
-                .NonLazy();
-
-            Container
                 .Bind<ILevelLooseSystem>()
                 .To<LevelLooseSystem>()
                 .AsSingle()
@@ -122,8 +115,7 @@ namespace BallShoot.Core.SceneInstallers
                 .NonLazy();
 
             Container
-                .Bind<ILevelGamePlaySystem>()
-                .To<LevelGamePlaySystem>()
+                .BindInterfacesAndSelfTo<LevelGamePlaySystem>()
                 .AsSingle()
                 .NonLazy();
         }

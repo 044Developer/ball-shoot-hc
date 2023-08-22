@@ -2,7 +2,8 @@ namespace BallShoot.Core.Data.Types
 {
     public enum LevelStateType
     {
-        Restart,
+        None,
+        Play,
         Win,
         Loose
     }
