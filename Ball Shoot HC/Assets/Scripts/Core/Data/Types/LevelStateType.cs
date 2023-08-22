@@ -5,6 +5,7 @@ namespace BallShoot.Core.Data.Types
         None,
         Play,
         Win,
-        Loose
+        Loose,
+        WaitForResult
     }
 }

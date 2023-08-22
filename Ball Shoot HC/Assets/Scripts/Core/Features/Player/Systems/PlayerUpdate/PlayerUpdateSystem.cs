@@ -27,18 +27,20 @@ namespace BallShoot.Core.Features.Player.Systems.PlayerUpdate
         
         public void Tick()
         {
-            if (_levelGamePlaySystem.CurrentLevelState != LevelStateType.Play)
-                return;
-            
-            _lifeTimeSystem.Tick();
+            if (_levelGamePlaySystem.CurrentLevelState == LevelStateType.Play
+                || _levelGamePlaySystem.CurrentLevelState == LevelStateType.WaitForResult)
+            {
+                _lifeTimeSystem.Tick();
+            }
         }
 
         public void FixedTick()
         {
-            if (_levelGamePlaySystem.CurrentLevelState != LevelStateType.Play)
-                return;
-            
-            _jumpSystem.Tick();
+            if (_levelGamePlaySystem.CurrentLevelState == LevelStateType.Play
+                || _levelGamePlaySystem.CurrentLevelState == LevelStateType.WaitForResult)
+            {
+                _jumpSystem.Tick();
+            }
         }
     }
 }

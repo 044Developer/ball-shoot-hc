@@ -1,7 +1,9 @@
 using System;
+using BallShoot.Core.Data.Types;
 using BallShoot.Core.Features.Player.Data;
 using BallShoot.Core.Features.Player.Models;
 using BallShoot.Core.Features.Player.View;
+using BallShoot.Core.Systems.LevelGamePlay;
 using BallShoot.Infrastructure.Modules.UserInterface.MonoComponents.Hud;
 using UnityEngine;
 using Zenject;
@@ -13,12 +15,14 @@ namespace BallShoot.Core.Features.Player.Systems.Jump
         private readonly PlayerModel _model;
         private readonly IPlayerView _view;
         private readonly HudRuntimeData _hudRuntimeData;
+        private readonly ILevelGamePlaySystem _levelGamePlaySystem;
 
-        public PlayerJumpSystem(PlayerModel model, IPlayerView view, HudRuntimeData hudRuntimeData)
+        public PlayerJumpSystem(PlayerModel model, IPlayerView view, HudRuntimeData hudRuntimeData, ILevelGamePlaySystem levelGamePlaySystem)
         {
             _model = model;
             _view = view;
             _hudRuntimeData = hudRuntimeData;
+            _levelGamePlaySystem = levelGamePlaySystem;
         }
         
         public void Tick()
@@ -50,6 +54,7 @@ namespace BallShoot.Core.Features.Player.Systems.Jump
         private void TriggerPlayerMoveBehaviour()
         {
             _model.RuntimeData.Status = PlayerStatus.Moving;
+            _levelGamePlaySystem.ChangeLevelState(LevelStateType.WaitForResult);
         }
     }
 }
