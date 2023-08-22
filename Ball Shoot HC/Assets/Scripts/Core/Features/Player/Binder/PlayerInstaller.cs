@@ -1,4 +1,5 @@
 using BallShoot.Core.Features.Player.Models;
+using BallShoot.Core.Features.Player.Systems.CheckCondition;
 using BallShoot.Core.Features.Player.Systems.Destroy;
 using BallShoot.Core.Features.Player.Systems.Jump;
 using BallShoot.Core.Features.Player.Systems.LifeTime;
@@ -52,6 +53,11 @@ namespace BallShoot.Core.Features.Player.Binder
 
             Container
                 .BindInterfacesAndSelfTo<PlayerJumpSystem>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<PlayerCheckConditionHandler>()
                 .AsSingle()
                 .NonLazy();
 

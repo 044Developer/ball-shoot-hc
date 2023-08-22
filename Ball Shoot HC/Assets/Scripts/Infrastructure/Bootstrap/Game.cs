@@ -3,6 +3,7 @@ using BallShoot.Infrastructure.Modules.SceneLoader;
 using BallShoot.Infrastructure.Modules.UserInterface.Data;
 using BallShoot.Infrastructure.Modules.UserInterface.MonoComponents.Loading;
 using BallShoot.Infrastructure.Modules.UserInterface.Screens;
+using UnityEngine.Device;
 using UnityEngine.SceneManagement;
 
 namespace BallShoot.Infrastructure.Bootstrap
@@ -20,6 +21,8 @@ namespace BallShoot.Infrastructure.Bootstrap
         
         public void StartApplication()
         {
+            Application.targetFrameRate = 30;
+            
             _screensModule.OpenScreen<LoadingScreen>(UIType.Loading);
             _sceneLoaderModule.Load(SceneType.Core, LoadSceneMode.Additive);
         }

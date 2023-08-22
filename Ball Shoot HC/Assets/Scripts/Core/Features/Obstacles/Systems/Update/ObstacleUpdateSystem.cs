@@ -29,9 +29,6 @@ namespace BallShoot.Core.Features.Obstacles.Systems.Update
         
         public void Tick()
         {
-            if (_levelGamePlaySystem.CurrentLevelState != LevelStateType.Play)
-                return;
-            
             if (_model.RuntimeData.State != ObstacleState.Destruction)
                 return;
             
